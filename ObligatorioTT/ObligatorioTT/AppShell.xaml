@@ -3,13 +3,47 @@
     x:Class="ObligatorioTT.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ObligatorioTT"
+    xmlns:pages="clr-namespace:ObligatorioTT.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="ObligatorioTT">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Buscar"
+            Icon="home"
+            ContentTemplate="{DataTemplate pages:MainPage}"
+            Route="MainPage">
+        </ShellContent>
+        <ShellContent
+             Title="New &amp; Hot"
+             Icon="fire"
+             ContentTemplate="{DataTemplate pages:MainPage}"
+             Route="MainPage">
+        </ShellContent>
+
+        <ShellContent
+             Title="Home"
+             Icon="home"
+             ContentTemplate="{DataTemplate pages:MainPage}"
+             Route="MainPage">  
+        </ShellContent>
+        
+        
+        <ShellContent
+             Title="Favorites"
+             Icon="fav"
+             ContentTemplate="{DataTemplate pages:MainPage}"
+             Route="MainPage">  
+        </ShellContent>
+        
+        <ShellContent
+             Title="Profile"
+             Icon="user"
+             ContentTemplate="{DataTemplate pages:MainPage}"
+             Route="MainPage">
+        </ShellContent>
+       
+    </TabBar>
+   
 
 </Shell>

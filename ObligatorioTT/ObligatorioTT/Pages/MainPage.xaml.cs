@@ -1,23 +1,22 @@
-﻿namespace ObligatorioTT.Pages;
+﻿using ObligatorioTT.ViewModels;
+
+namespace ObligatorioTT.Pages;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    private readonly HomeViewModel _homeViewModel;
 
-    public MainPage()
+    public MainPage(HomeViewModel homeViewModel)
     {
         InitializeComponent();
+        _homeViewModel = homeViewModel;
+        BindingContext = _homeViewModel;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    protected async override void OnAppearing()
     {
-        count++;
-
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        base.OnAppearing();
+        await _homeViewModel.InitializeAsync();
     }
+
 }

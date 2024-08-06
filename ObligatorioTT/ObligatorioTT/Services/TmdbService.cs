@@ -24,7 +24,7 @@ namespace ObligatorioTT.Services
 
         public async Task<IEnumerable<Media>> GetTrendingAsync() =>
             await GetMediasAsync(TmdbUrls.Trending);
-        
+
         public async Task<IEnumerable<Media>> GetTopRatedAsync() =>
             await GetMediasAsync(TmdbUrls.TopRated);
         public async Task<IEnumerable<Media>> GetPopularAsync() =>
@@ -32,6 +32,8 @@ namespace ObligatorioTT.Services
         public async Task<IEnumerable<Media>> GetUpcomingAsync() =>
             await GetMediasAsync(TmdbUrls.Upcoming);
 
+        public async Task<IEnumerable<Media>> GetActionAsync() =>
+            await GetMediasAsync(TmdbUrls.Action);
         private async Task<IEnumerable<Media>> GetMediasAsync(string url)
         {
             var trendingMoviesCollections = await HttpClient.GetFromJsonAsync<Movie>($"{url}&api_key={ApiKey}");
@@ -41,14 +43,38 @@ namespace ObligatorioTT.Services
 
     public static class TmdbUrls
     {
-        public const string Trending = "3/trending/all/week?language=en-US";
-        public const string TopRated = "3/movie/top_rated?language=en-US";
-        public const string Popular = "3/movie/popular?language=en-US";
-        public const string Upcoming = "3/movie/upcoming?language=en-US";
+        public const string Trending = "3/trending/all/week?language=es-sp";
+        public const string TopRated = "3/movie/top_rated?language=es-sp";
+        public const string Popular = "3/movie/popular?language=es-sp";
+        public const string Upcoming = "3/movie/upcoming?language=es-sp";
+        public const string Action = "3/discover/movie?language=es-sp&with_genres=28";
 
-        public static string GetTrailers(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/videos?language=en-US";
-        public static string GetMovieDetails(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}?language=en-US";
-        public static string GetSimilar(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/similar?language=en-US";
+        /*
+         MOVIE
+                Action          28
+                Adventure       12
+                Animation       16
+                Comedy          35
+                Crime           80
+                Documentary     99
+                Drama           18
+                Family          10751
+                Fantasy         14
+                History         36
+                Horror          27
+                Music           10402
+                Mystery         9648
+                Romance         10749
+                Science Fiction 878
+                TV Movie        10770
+                Thriller        53
+                War             10752
+                Western         37
+        */
+
+        public static string GetTrailers(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/videos?language=es-sp";
+        public static string GetMovieDetails(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}?language=es-sp";
+        public static string GetSimilar(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/similar?language=es-sp";
 
     }
 
@@ -81,7 +107,7 @@ namespace ObligatorioTT.Services
         public string DisplayTitle => title ?? name ?? original_title ?? original_name;
 
         public Media ToMediaObject() =>
-            new ()
+            new()
             {
                 Id = id,
                 DisplayTitle = DisplayTitle,

@@ -64,6 +64,8 @@
 	  <None Remove="Resources\Images\fav.png" />
 	  <None Remove="Resources\Images\fire.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\info.png" />
+	  <None Remove="Resources\Images\play.png" />
 	  <None Remove="Resources\Images\user.png" />
 	</ItemGroup>
 

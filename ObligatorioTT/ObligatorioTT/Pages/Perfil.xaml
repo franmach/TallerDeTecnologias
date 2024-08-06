@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.Perfil"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#2F478C"
+             xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             x:DataType="vm:HomeViewModel"
+             Title="Perfil">
+
+    <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
+          RowDefinitions="Auto,Auto,Auto,Auto,*">
+
+        <!-- Campo de entrada para el nombre del nuevo usuario -->
+        <Entry x:Name="NuevoUsuario"
+               Placeholder="Nombre" />
+
+        <!-- Botón para agregar un nuevo usuario -->
+        <Button Text="Agregar"
+                x:Name="btnAgregarUsuario"
+                Grid.Row="1"
+                Clicked="btnAgregarUsuario_Clicked" />
+
+        <!-- Mensaje de estado -->
+        <Label x:Name="statusMessage"
+               TextColor="{StaticResource Primary}"
+               Grid.Row="2" />
+    </Grid>
+</ContentPage>

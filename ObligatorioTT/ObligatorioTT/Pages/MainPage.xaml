@@ -44,7 +44,7 @@
                     <Grid VerticalOptions="Start"
                           HeightRequest="35"
                           Margin="0,35,0,0">
-                        
+
                         <FlexLayout x:Name="flexLayout"
                                     JustifyContent="SpaceAround" 
                                     VerticalOptions="Center">
@@ -70,11 +70,53 @@
                     </Grid>
                     <HorizontalStackLayout VerticalOptions="End"
                        HorizontalOptions="Center"
-                       HeightRequest="100">
+                                           Spacing="50">
                         <VerticalStackLayout>
-                            <Label Text="+" Style="{StaticResource NeonLabel}"></Label>
-                            <Label Text="MI LISTA" Style="{StaticResource NeonLabel}"></Label>
+                            <Label Text="+" 
+                                   HorizontalOptions="Center"
+                                   FontAttributes="Bold"
+                                   FontSize="20"
+                                   TextColor="White">
+                            </Label>
+                            <Label Text="MI LISTA"
+                                    HorizontalTextAlignment="Center"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="White">
+                            </Label> 
                         </VerticalStackLayout>
+
+                        <Border StrokeShape="RoundRectangle 5"
+                                    BackgroundColor="White"
+                                    Padding="20,5">
+                            <HorizontalStackLayout Spacing="5"
+                                               VerticalOptions="Center">
+                                <Image Source="play"
+                                   Aspect="AspectFit"
+                                   HeightRequest="20"
+                                   WidthRequest="20">
+                                </Image>
+                                <Label Text="PLAY"
+                                   TextColor="Black"
+                                   FontAttributes="Bold"
+                                   FontSize="16"></Label>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <VerticalStackLayout>
+                            <Grid HorizontalOptions="Center">
+                                <Ellipse Stroke="White"
+                                         HeightRequest="22"
+                                         WidthRequest="22">
+                                </Ellipse>
+                                <Label Text="i"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       FontAttributes="Bold">
+                                </Label>
+                            </Grid>
+                        </VerticalStackLayout>
+
                     </HorizontalStackLayout>
 
                 </Grid>

@@ -25,6 +25,7 @@ namespace ObligatorioTT.ViewModels
         public ObservableCollection<Media> TopRated { get; set; } = new();
         public ObservableCollection<Media> Popular { get; set; } = new();
         public ObservableCollection<Media> Upcoming { get; set; } = new();
+        public ObservableCollection<Media> ActionMovies { get; set; } = new();
 
         public async Task InitializeAsync()
         {
@@ -32,16 +33,19 @@ namespace ObligatorioTT.ViewModels
             var TopRatedListTask =  _tmdbService.GetTopRatedAsync();
             var popularListTask =  _tmdbService.GetPopularAsync();
             var upcomingListTask =  _tmdbService.GetUpcomingAsync();
+            var actionListTask = _tmdbService.GetActionAsync();
 
             var medias = await Task.WhenAll(trendingListTask,
                                             TopRatedListTask,
                                             popularListTask,
-                                            upcomingListTask);
+                                            upcomingListTask,
+                                            actionListTask);
 
             var trendingList = medias[0];
             var TopRatedList = medias[1];
             var popularList = medias[2];
             var upcomingList = medias[3];
+            var actionList = medias[4];
 
             //setea peliculas random de la lista trendingList
             TrendingMovie = trendingList.OrderBy(t => Guid.NewGuid())
@@ -52,6 +56,7 @@ namespace ObligatorioTT.ViewModels
             SetMediaCollection(TopRatedList, TopRated);
             SetMediaCollection(popularList, Popular);
             SetMediaCollection(upcomingList, Upcoming);
+            SetMediaCollection(actionList, ActionMovies);
         }
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
         {

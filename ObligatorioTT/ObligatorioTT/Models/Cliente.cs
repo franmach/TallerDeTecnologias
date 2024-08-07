@@ -13,13 +13,19 @@ namespace ObligatorioTT.Models
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
 
-        [MaxLength(250)]
+        [MaxLength(250), NotNull]
         public string nombre { get; set; }
+
+        [MaxLength(400), NotNull]
         public string telefono { get; set; }
 
-        [Unique]
+        [Unique, NotNull]
         public string email { get; set; }
+
+        [NotNull]
         public string password { get; set; }
+
+        [NotNull]
         public string rutaFoto { get; set; }
 
         public Cliente() { }

@@ -1,38 +1,57 @@
+using ObligatorioTT.Models;
 using ObligatorioTT.ViewModels;
 using System;
-namespace ObligatorioTT.Pages;
 
-public partial class Perfil : ContentPage
+namespace ObligatorioTT.Pages
 {
-    private readonly HomeViewModel _homeViewModel;
-    public Perfil(HomeViewModel homeViewModel)
-	{
-		InitializeComponent();
-        _homeViewModel = homeViewModel;
-        BindingContext = _homeViewModel;
-    }
-
-    private void btnAgregarUsuario_Clicked(object sender, EventArgs e)
+    public partial class Perfil : ContentPage
     {
-        try
+        private readonly HomeViewModel _homeViewModel;
+        private readonly Repository _repository;
+
+        public Perfil(HomeViewModel homeViewModel, Repository repository)
         {
-            // Lógica para agregar un nuevo usuario
-            string nombre = NuevoUsuario.Text;
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                // Agregar usuario a la base de datos o lista
-                statusMessage.Text = "Usuario agregado correctamente";
-            }
-            else
-            {
-                statusMessage.Text = "Por favor, ingrese un nombre";
-            }
+            InitializeComponent();
+            _homeViewModel = homeViewModel;
+            _repository = repository;
+            BindingContext = _homeViewModel;
         }
-        catch (Exception ex)
+
+        private async void btnAgregarCliente_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine($"Error in btnAgregarUsuario_Clicked: {ex.Message}");
-            // Manejo de la excepción
-            statusMessage.Text = "Error al agregar usuario";
+            try
+            {
+                string nombre = Nombre.Text;
+                string telefono = Telefono.Text;
+                string email = Email.Text;
+                string password = Password.Text;
+                string rutaFoto = RutaFoto.Text;
+
+                if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                {
+                    statusMessage.Text = "Por favor, complete todos los campos obligatorios.";
+                    return;
+                }
+
+                Cliente nuevoCliente = new()
+                {
+                    nombre = nombre,
+                    telefono = telefono,
+                    email = email,
+                    password = password,
+                    rutaFoto = rutaFoto
+                };
+
+                await _repository.AddNewClienteAsync(nuevoCliente);
+
+                statusMessage.Text = "Cliente agregado correctamente";
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text = RutaFoto.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in btnAgregarCliente_Clicked: {ex.Message}");
+                statusMessage.Text = "Error al agregar cliente";
+            }
         }
     }
 }

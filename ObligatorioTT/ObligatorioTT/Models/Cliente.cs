@@ -16,7 +16,7 @@ namespace ObligatorioTT.Models
         [MaxLength(250), NotNull]
         public string nombre { get; set; }
 
-        [MaxLength(400), NotNull]
+        [MaxLength(400)]
         public string telefono { get; set; }
 
         [Unique, NotNull]
@@ -25,13 +25,7 @@ namespace ObligatorioTT.Models
         [NotNull]
         public string password { get; set; }
 
-        [NotNull]
         public string rutaFoto { get; set; }
-
-        public Cliente() { }
-
-
-
 
     }
 }

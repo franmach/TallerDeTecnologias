@@ -21,6 +21,7 @@ namespace ObligatorioTT
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+           
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -32,6 +33,9 @@ namespace ObligatorioTT
             builder.Services.AddSingleton<MainPage>();//Usamos el patron Singleton para garantizar que solamente haya una instancia de TMDBService en toda la vida de la app, cada vez que se llame se devuelve la misma instnacia
             builder.Services.AddSingleton<HomeViewModel>();
 
+            // Añadir Repository como singleton
+            string rutaDB = FileAccessHelper.GetLocalFilePath("clientesdb.db3");
+            builder.Services.AddSingleton<Repository>(s => ActivatorUtilities.CreateInstance<Repository>(s, rutaDB));
 
             return builder.Build();
         }

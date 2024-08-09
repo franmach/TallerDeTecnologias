@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.Loading"
              Title="Loading"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#cac0f2">
     <VerticalStackLayout
         HorizontalOptions="Center"
         VerticalOptions="Center">

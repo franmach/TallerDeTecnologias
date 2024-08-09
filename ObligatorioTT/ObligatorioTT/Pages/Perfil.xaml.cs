@@ -6,17 +6,18 @@ namespace ObligatorioTT.Pages
 {
     public partial class Perfil : ContentPage
     {
-        private readonly HomeViewModel _homeViewModel;
-        private readonly Repository _repository;
+        public readonly Repository _repository;
 
-        public Perfil(HomeViewModel homeViewModel, Repository repository)
+        public Perfil(Repository repository)
         {
             InitializeComponent();
-            _homeViewModel = homeViewModel;
             _repository = repository;
-            BindingContext = _homeViewModel;
+            BindingContext = _repository;
         }
 
+        public Perfil() : this(App.ObligatorioRepo)
+        {
+        }
         private async void btnAgregarCliente_Clicked(object sender, EventArgs e)
         {
             try

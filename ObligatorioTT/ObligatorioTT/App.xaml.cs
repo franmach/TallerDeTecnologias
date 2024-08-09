@@ -9,7 +9,7 @@
             InitializeComponent();
 
             MainPage = new AppShell();
-
+            
             // TODO: Initialize the PersonRepository property with the PersonRespository singleton object
             ObligatorioRepo = repositorio;
         }

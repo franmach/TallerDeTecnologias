@@ -11,6 +11,8 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _homeViewModel = homeViewModel;
         BindingContext = _homeViewModel;
+
+       
     }
 
     protected async override void OnAppearing()

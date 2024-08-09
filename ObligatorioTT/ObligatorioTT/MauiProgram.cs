@@ -23,6 +23,16 @@ namespace ObligatorioTT
 
 #if DEBUG
             builder.Logging.AddDebug();
+
+            builder.Services.AddTransient<AuthService>();
+            builder.Services.AddTransient<Loading>();
+            builder.Services.AddTransient<Login>();
+            builder.Services.AddTransient<Profile>();
+
+
+
+
+
 #endif
             builder.Services.AddHttpClient(TmdbService.TmdbHttpClientName,
                 httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));

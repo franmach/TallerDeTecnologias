@@ -6,7 +6,6 @@
              BackgroundColor ="#2F478C"
              xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
              x:DataType="vm:HomeViewModel">
-    <!--"#2F478C"-->
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -75,7 +74,7 @@
                             <Label Text="+" 
                                    HorizontalOptions="Center"
                                    FontAttributes="Bold"
-                                   FontSize="20"
+                                   FontSize="22"
                                    TextColor="White">
                             </Label>
                             <Label Text="MI LISTA"
@@ -105,16 +104,20 @@
 
                         <VerticalStackLayout>
                             <Grid HorizontalOptions="Center">
-                                <Ellipse Stroke="White"
-                                         HeightRequest="22"
-                                         WidthRequest="22">
-                                </Ellipse>
-                                <Label Text="i"
-                                       HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"
-                                       FontAttributes="Bold">
-                                </Label>
+                              
+                                <Image
+                                    Margin="2"
+                                       HeightRequest="22"
+                                       WidthRequest="22"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Source="info">
+                                </Image>
                             </Grid>
+                            <Label Text="INFO"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="16"></Label>
                         </VerticalStackLayout>
 
                     </HorizontalStackLayout>
@@ -124,6 +127,7 @@
 
 
         </ScrollView>
+      
     </Grid>
 
 </ContentPage>

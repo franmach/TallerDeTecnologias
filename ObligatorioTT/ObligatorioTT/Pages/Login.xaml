@@ -4,41 +4,64 @@
              x:Class="ObligatorioTT.Pages.Login"
              Title="Login"
              Shell.NavBarIsVisible="False"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="#cac0f2">
+
+    
     <VerticalStackLayout 
+        
+     
         HorizontalOptions="Center"
         VerticalOptions="Center"
         Padding="25"
         Spacing="25">
+        <HorizontalStackLayout>
+            <Image Source="logo"
+                Aspect="AspectFit"
+                HeightRequest="200"
+                WidthRequest="300">
+            </Image>
+
+        </HorizontalStackLayout>
        
         <Entry 
-            Placeholder="Usuario"
-            Text="Bin"
+            Placeholder="Email"
+            PlaceholderColor="Black"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
-            WidthRequest="100"/>
-        <Label
-             Text="Contrasena"
-             VerticalOptions="Center" 
-             HorizontalOptions="Center">
-        </Label>
+             WidthRequest="200"/>
         <Entry 
-             VerticalOptions="Center" 
-             HorizontalOptions="Center" 
-             WidthRequest="100"/>
+            Placeholder="Contraseña"
+            IsPassword="True"
+            PlaceholderColor="Black"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            WidthRequest="200"/>
+
+        <Button
+            x:Name="Foto"
+            Text="Tomar selfie"
+            TextColor="White"
+            BackgroundColor="Black"
+            Clicked="Foto_Clicked"
+            WidthRequest="150"
+        />
 
         <Button
             x:Name="btnInicioSesion"
             Text="Iniciar Sesion"
-            Clicked="btnInicioSesion_Clicked">
+            Clicked="btnInicioSesion_Clicked"
+            WidthRequest="200">
         </Button>
         <Label
-            Text="Registrarme">
+            Text="¿No tienes uno?  Crear perfil"
+            x:Name="Registrarme"
+            HorizontalOptions="Center"
+            TextColor="#502bd4"
+            >
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="On_Tapped" />
             </Label.GestureRecognizers>
-        
-
         </Label>
     </VerticalStackLayout>
 </ContentPage>

@@ -8,7 +8,6 @@ namespace ObligatorioTT
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
-            Routing.RegisterRoute(nameof(Listing), typeof(Listing));
             Routing.RegisterRoute(nameof(Login), typeof(Login));
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
             Routing.RegisterRoute(nameof(Loading), typeof(Loading));

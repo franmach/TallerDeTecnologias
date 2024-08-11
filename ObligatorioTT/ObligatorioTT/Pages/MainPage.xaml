@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.MainPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor ="#2F478C"
+             BackgroundColor="Black"
              xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             xmlns:controls="clr-namespace:ObligatorioTT.Controls"
              x:DataType="vm:HomeViewModel">
 
     <ContentPage.Resources>
@@ -42,28 +43,16 @@
                     </Image>
                     <Grid VerticalOptions="Start"
                           HeightRequest="35"
-                          Margin="0,35,0,0">
-
-                        <FlexLayout x:Name="flexLayout"
-                                    JustifyContent="SpaceAround" 
+                          Margin="0, 35, 0, 0">
+                        <FlexLayout JustifyContent="SpaceAround"
                                     VerticalOptions="Center">
-                            <Label Text="SERIES"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="CATEGORIAS"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="PELICULAS"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
+                            <Label Text="TV Shows"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Movies"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Categories"
+                                   Style="{StaticResource MenuLabel}">
+                                                       
                             </Label>
                         </FlexLayout>
                     </Grid>
@@ -123,6 +112,23 @@
                     </HorizontalStackLayout>
 
                 </Grid>
+                <controls:MovieRow Heading="Top Rated" 
+                   Movies="{Binding TopRated}" 
+                   IsLarge="False"
+                   />
+                <controls:MovieRow Heading="Popular" 
+                   Movies="{Binding Popular}" 
+                   IsLarge="True"
+                   />
+                <controls:MovieRow Heading="Trending" 
+                   Movies="{Binding Trending}" 
+                   IsLarge="False"
+                   />
+                <controls:MovieRow Heading="Próximamente" 
+                   Movies="{Binding Upcoming}" 
+                   IsLarge="False"
+                   />
+
             </VerticalStackLayout>
 
 

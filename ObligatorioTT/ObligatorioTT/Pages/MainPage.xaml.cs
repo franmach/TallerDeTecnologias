@@ -21,44 +21,44 @@ public partial class MainPage : ContentPage
         await _homeViewModel.InitializeAsync();
     }
 
-    private async void OnLabelTapped(object sender, EventArgs e)
-    {
-        var selectedLabel = sender as Label;
+    //private async void OnLabelTapped(object sender, EventArgs e)
+    //{
+    //    var selectedLabel = sender as Label;
 
-        // Encontrar la posición del label seleccionado y del que está en el medio
-        int selectedIndex = flexLayout.Children.IndexOf(selectedLabel);
-        int middleIndex = flexLayout.Children.Count / 2;
+    //    // Encontrar la posición del label seleccionado y del que está en el medio
+    //    int selectedIndex = flexLayout.Children.IndexOf(selectedLabel);
+    //    int middleIndex = flexLayout.Children.Count / 2;
 
-        // Si el label seleccionado ya está en el medio, solo agrandarlo
-        if (selectedIndex == middleIndex)
-        {
-            await AnimateLabel(selectedLabel, true);
-        }
-        else
-        {
-            // Resetear todos los labels a su estado original
-            foreach (var child in flexLayout.Children)
-            {
-                if (child is Label label)
-                {
-                    await AnimateLabel(label, false);
-                }
-            }
+    //    // Si el label seleccionado ya está en el medio, solo agrandarlo
+    //    if (selectedIndex == middleIndex)
+    //    {
+    //        await AnimateLabel(selectedLabel, true);
+    //    }
+    //    else
+    //    {
+    //        // Resetear todos los labels a su estado original
+    //        foreach (var child in flexLayout.Children)
+    //        {
+    //            if (child is Label label)
+    //            {
+    //                await AnimateLabel(label, false);
+    //            }
+    //        }
 
-            // Intercambiar posiciones entre el label seleccionado y el del medio
-            flexLayout.Children.Remove(selectedLabel);
-            flexLayout.Children.Insert(middleIndex, selectedLabel);
+    //        // Intercambiar posiciones entre el label seleccionado y el del medio
+    //        flexLayout.Children.Remove(selectedLabel);
+    //        flexLayout.Children.Insert(middleIndex, selectedLabel);
 
-            // Agrandar y resaltar el label seleccionado
-            await AnimateLabel(selectedLabel, true);
-        }
+    //        // Agrandar y resaltar el label seleccionado
+    //        await AnimateLabel(selectedLabel, true);
+    //    }
 
-        // Navegar a una nueva página después de la animación
-        //await Task.Delay(250); // Esperar a que termine la animación
+    //    // Navegar a una nueva página después de la animación
+    //    //await Task.Delay(250); // Esperar a que termine la animación
 
-        //// Aquí especificas la página a la que quieres navegar
-        //await Navigation.PushAsync(new NextPage());
-    }
+    //    //// Aquí especificas la página a la que quieres navegar
+    //    //await Navigation.PushAsync(new NextPage());
+    //}
 
     private async Task AnimateLabel(Label label, bool isSelected)
     {

@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.MainPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor ="#2F478C"
+             BackgroundColor="Black"
              xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             xmlns:controls="clr-namespace:ObligatorioTT.Controls"
              x:DataType="vm:HomeViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" x:Key="NeonLabel">
+            <Style TargetType="Label" x:Key="MenuLabel">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -42,34 +43,22 @@
                     </Image>
                     <Grid VerticalOptions="Start"
                           HeightRequest="35"
-                          Margin="0,35,0,0">
-
-                        <FlexLayout x:Name="flexLayout"
-                                    JustifyContent="SpaceAround" 
+                          Margin="0, 35, 0, 0">
+                        <FlexLayout JustifyContent="SpaceAround"
                                     VerticalOptions="Center">
-                            <Label Text="SERIES"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="CATEGORIAS"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label Text="PELICULAS"
-                                   Style="{StaticResource NeonLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                </Label.GestureRecognizers>
-                            </Label>
+                            <Label Text="TV Shows"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Movies"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Categories"
+                                   Style="{StaticResource MenuLabel}"/>
+
+
                         </FlexLayout>
                     </Grid>
                     <HorizontalStackLayout VerticalOptions="End"
                        HorizontalOptions="Center"
-                                           Spacing="50">
+                                           Spacing="70">
                         <VerticalStackLayout>
                             <Label Text="+" 
                                    HorizontalOptions="Center"
@@ -123,6 +112,23 @@
                     </HorizontalStackLayout>
 
                 </Grid>
+                <controls:MovieRow Heading="Mejores valoradas" 
+                   Movies="{Binding TopRated}" 
+                   IsLarge="False"
+                   />
+                <controls:MovieRow Heading="Populares" 
+                   Movies="{Binding Popular}" 
+                   IsLarge="True"
+                   />
+                <controls:MovieRow Heading="Trendencias" 
+                   Movies="{Binding Trending}" 
+                   IsLarge="False"
+                   />
+                <controls:MovieRow Heading="Próximamente" 
+                   Movies="{Binding Upcoming}" 
+                   IsLarge="False"
+                   />
+
             </VerticalStackLayout>
 
 

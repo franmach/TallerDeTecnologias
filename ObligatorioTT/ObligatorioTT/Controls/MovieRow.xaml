@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ObligatorioTT.Models"
+             xmlns:controls="clr-namespace:ObligatorioTT.Controls"
+             x:Class="ObligatorioTT.Controls.MovieRow"
+             x:Name="this">
+    <VerticalStackLayout BackgroundColor="Black"
+                         BindingContext="{x:Reference this}">
+        <Label Text="{Binding Heading}"
+               BindingContext="{x:Reference this}"
+               FontAttributes="Bold"
+               FontSize="16"
+               HorizontalTextAlignment="Start"
+               Margin="10, 15, 0, 5"
+               />
+
+        <CollectionView ItemsSource="{Binding Movies}" >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                   ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Media">
+                    <Border StrokeShape="RoundRectangle 5" 
+                            Stroke="Black"
+                            StrokeThickness="1">
+                        <Grid>
+                            <Image Aspect="AspectFill"
+                                HeightRequest="150"
+                                WidthRequest="120"
+                                IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsNotLarge}"
+                                >
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ThumbnailSmall}"/>
+                                </Image.Source>
+                            </Image>
+                            <Image Aspect="AspectFill"
+                                    HeightRequest="120"
+                                    WidthRequest="150"
+                                    IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsLarge}"
+                                    >
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ThumbnailSmall}"/>
+                                </Image.Source>
+                            </Image>
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </VerticalStackLayout>
+</ContentView>

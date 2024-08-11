@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:ObligatorioTT.Models"
              xmlns:controls="clr-namespace:ObligatorioTT.Controls"
-             x:Class="ObligatorioTT.Controls.MovieRow">
-    <VerticalStackLayout BackgroundColor="Black">
+             x:Class="ObligatorioTT.Controls.MovieRow"
+             x:Name="this">
+    <VerticalStackLayout BackgroundColor="Black"
+                         BindingContext="{x:Reference this}">
         <Label Text="{Binding Heading}"
+               BindingContext="{x:Reference this}"
                FontAttributes="Bold"
                FontSize="16"
                HorizontalTextAlignment="Start"
-               Margin="10, 0, 0, 10"
+               Margin="10, 15, 0, 5"
                />
 
         <CollectionView ItemsSource="{Binding Movies}" >
@@ -23,7 +26,7 @@
                             Stroke="Black"
                             StrokeThickness="1">
                         <Grid>
-                            <Image Aspect="AspectFit"
+                            <Image Aspect="AspectFill"
                                 HeightRequest="150"
                                 WidthRequest="120"
                                 IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsNotLarge}"
@@ -32,8 +35,8 @@
                                     <UriImageSource Uri="{Binding ThumbnailSmall}"/>
                                 </Image.Source>
                             </Image>
-                            <Image Aspect="AspectFit"
-                                    HeightRequest="1200"
+                            <Image Aspect="AspectFill"
+                                    HeightRequest="120"
                                     WidthRequest="150"
                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsLarge}"
                                     >

@@ -10,7 +10,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Label" x:Key="NeonLabel">
+            <Style TargetType="Label" x:Key="MenuLabel">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -51,14 +51,14 @@
                             <Label Text="Movies"
                                    Style="{StaticResource MenuLabel}"/>
                             <Label Text="Categories"
-                                   Style="{StaticResource MenuLabel}">
-                                                       
-                            </Label>
+                                   Style="{StaticResource MenuLabel}"/>
+
+
                         </FlexLayout>
                     </Grid>
                     <HorizontalStackLayout VerticalOptions="End"
                        HorizontalOptions="Center"
-                                           Spacing="50">
+                                           Spacing="70">
                         <VerticalStackLayout>
                             <Label Text="+" 
                                    HorizontalOptions="Center"
@@ -112,15 +112,15 @@
                     </HorizontalStackLayout>
 
                 </Grid>
-                <controls:MovieRow Heading="Top Rated" 
+                <controls:MovieRow Heading="Mejores valoradas" 
                    Movies="{Binding TopRated}" 
                    IsLarge="False"
                    />
-                <controls:MovieRow Heading="Popular" 
+                <controls:MovieRow Heading="Populares" 
                    Movies="{Binding Popular}" 
                    IsLarge="True"
                    />
-                <controls:MovieRow Heading="Trending" 
+                <controls:MovieRow Heading="Trendencias" 
                    Movies="{Binding Trending}" 
                    IsLarge="False"
                    />

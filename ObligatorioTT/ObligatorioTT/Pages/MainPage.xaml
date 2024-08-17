@@ -43,21 +43,25 @@
                                                   CommandParameter="{Binding TrendingMovie}"/>
                         </Image.GestureRecognizers>
                     </Image>
+                    
                     <Grid VerticalOptions="Start"
                           HeightRequest="35"
                           Margin="0, 35, 0, 0">
                         <FlexLayout JustifyContent="SpaceAround"
                                     VerticalOptions="Center">
-                            <Label Text="TV Shows"
+                            <Label Text="Series"
                                    Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Movies"
+                            <Label Text="Peliculas"
                                    Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Categories"
-                                   Style="{StaticResource MenuLabel}"/>
-
-
+                            <Label Text="Categorias"
+                                   Style="{StaticResource MenuLabel}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CategoriesMenu_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </FlexLayout>
                     </Grid>
+                    
                     <HorizontalStackLayout VerticalOptions="End"
                        HorizontalOptions="Center"
                                            Spacing="70">

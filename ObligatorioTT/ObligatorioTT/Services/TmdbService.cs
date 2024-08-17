@@ -22,6 +22,11 @@ namespace ObligatorioTT.Services
 
         private HttpClient HttpClient => _httpClientFactory.CreateClient(TmdbHttpClientName);
 
+        public async Task<IEnumerable<Genre>> GetGenresAsync()
+        {
+            var genresWrapper = await HttpClient.GetFromJsonAsync<GenreWrapper>($"{TmdbUrls.MoviesGenres}&api_key={ApiKey}");
+            return genresWrapper.Genres;
+        }
         public async Task<IEnumerable<Media>> GetTrendingAsync() =>
             await GetMediasAsync(TmdbUrls.Trending);
 
@@ -48,36 +53,12 @@ namespace ObligatorioTT.Services
         public const string Popular = "3/movie/popular?language=es-sp";
         public const string Upcoming = "3/movie/upcoming?language=es-sp";
         public const string Action = "3/discover/movie?language=es-sp&with_genres=28";
-
-        /*
-         MOVIE
-                Action          28
-                Adventure       12
-                Animation       16
-                Comedy          35
-                Crime           80
-                Documentary     99
-                Drama           18
-                Family          10751
-                Fantasy         14
-                History         36
-                Horror          27
-                Music           10402
-                Mystery         9648
-                Romance         10749
-                Science Fiction 878
-                TV Movie        10770
-                Thriller        53
-                War             10752
-                Western         37
-        */
-
+        public const string MoviesGenres = "3/genre/movie/list?language=es-sp";
         public static string GetTrailers(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/videos?language=es-sp";
         public static string GetMovieDetails(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}?language=es-sp";
         public static string GetSimilar(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/similar?language=es-sp";
 
     }
-
     public class Movie
     {
         public int page { get; set; }

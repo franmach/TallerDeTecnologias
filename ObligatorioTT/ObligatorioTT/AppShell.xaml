@@ -15,38 +15,42 @@
             Title="Buscar"
             Icon="home"
             ContentTemplate="{DataTemplate pages:MainPage}"
-            Route="MainPage">
+            Route="BuscarPage">
+            <!-- Ruta única -->
         </ShellContent>
+
         <ShellContent
              Title="Loading"
              Icon="fire"
              ContentTemplate="{DataTemplate pages:Loading}"
-             Route="Loading"
-            Shell.TabBarIsVisible="False">
+             Route="LoadingPage"
+             Shell.TabBarIsVisible="False">
         </ShellContent>
 
         <ShellContent
              Title="Home"
              Icon="home"
              ContentTemplate="{DataTemplate pages:MainPage}"
-             Route="MainPage">  
+             Route="HomePage">
+            <!-- Ruta única -->
         </ShellContent>
-        
-        
+
         <ShellContent
              Title="Favorites"
              Icon="fav"
              ContentTemplate="{DataTemplate pages:MainPage}"
-             Route="MainPage">  
+             Route="FavoritesPage">
+            <!-- Ruta única -->
         </ShellContent>
-        
+
         <ShellContent
              Title="Profile"
              Icon="user"
              ContentTemplate="{DataTemplate pages:Login}"
-             Route="MainPage">
+             Route="ProfilePage">
+            <!-- Ruta única -->
         </ShellContent>
-       
+
     </TabBar>
    
 

@@ -10,9 +10,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         _homeViewModel = homeViewModel;
-        BindingContext = _homeViewModel;
-
-       
+        BindingContext = _homeViewModel;  
     }
 
     protected async override void OnAppearing()
@@ -31,6 +29,14 @@ public partial class MainPage : ContentPage
     {
         _homeViewModel.SelectMediaCommand.Execute(null);
     }
+
+    //evento del menu de categorias
+    private async void CategoriesMenu_Tapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(CategoriesPage));
+    }
+
+
     //private async void OnLabelTapped(object sender, EventArgs e)
     //{
     //    var selectedLabel = sender as Label;

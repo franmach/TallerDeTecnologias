@@ -133,7 +133,9 @@
 
 
         </ScrollView>
-      
+        <controls:MovieInfoBox Media="{Binding SelectedMedia}" 
+                               VerticalOptions="End"/>
     </Grid>
 
+    
 </ContentPage>

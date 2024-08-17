@@ -87,17 +87,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controls\" />
-	  <Folder Include="Controls\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Pages\CrearPerfil.xaml.cs">
 	    <DependentUpon>CrearPerfil.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\MovieInfoBox.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\MovieRow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -13,14 +13,16 @@ namespace ObligatorioTT.ViewModels
     public partial class HomeViewModel : ObservableObject
     {
         private readonly TmdbService _tmdbService;
-        public HomeViewModel(TmdbService tmdbService) 
+        public HomeViewModel(TmdbService tmdbService)
         {
             _tmdbService = tmdbService;
         }
- 
+
         [ObservableProperty]
         private Media _trendingMovie;
 
+        [ObservableProperty]
+        private Media _selectedMedia;
         public ObservableCollection<Media> Trending { get; set; } = new();
         public ObservableCollection<Media> TopRated { get; set; } = new();
         public ObservableCollection<Media> Popular { get; set; } = new();
@@ -57,6 +59,8 @@ namespace ObligatorioTT.ViewModels
             SetMediaCollection(popularList, Popular);
             SetMediaCollection(upcomingList, Upcoming);
             SetMediaCollection(actionList, ActionMovies);
+
+            SelectedMedia = TrendingMovie;
         }
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
         {

@@ -22,12 +22,10 @@
                             Radius="8"/>
                     </Setter.Value>
                 </Setter>
-
-
             </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <Grid Margin="0"
           Padding="0">
         <ScrollView BackgroundColor="black">
@@ -40,6 +38,10 @@
                         <Image.Source>
                             <UriImageSource Uri="{Binding TrendingMovie.Thumbnail}"/>
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
+                                                  CommandParameter="{Binding TrendingMovie}"/>
+                        </Image.GestureRecognizers>
                     </Image>
                     <Grid VerticalOptions="Start"
                           HeightRequest="35"
@@ -107,34 +109,43 @@
                                    TextColor="White"
                                    FontAttributes="Bold"
                                    FontSize="16"></Label>
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
+                                                      CommandParameter="{Binding TrendingMovie}"/>
+                            </VerticalStackLayout.GestureRecognizers>
                         </VerticalStackLayout>
 
                     </HorizontalStackLayout>
 
                 </Grid>
                 <controls:MovieRow Heading="Mejores valoradas" 
-                   Movies="{Binding TopRated}" 
-                   IsLarge="False"
-                   />
+                                    Movies="{Binding TopRated}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
                 <controls:MovieRow Heading="Populares" 
-                   Movies="{Binding Popular}" 
-                   IsLarge="True"
-                   />
+                                    Movies="{Binding Popular}" 
+                                    IsLarge="True"
+                                    MediaSelected="MovieRow_MediaSelected"/>
                 <controls:MovieRow Heading="Trendencias" 
-                   Movies="{Binding Trending}" 
-                   IsLarge="False"
-                   />
+                                    Movies="{Binding Trending}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
                 <controls:MovieRow Heading="Próximamente" 
-                   Movies="{Binding Upcoming}" 
-                   IsLarge="False"
-                   />
+                                    Movies="{Binding Upcoming}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
 
             </VerticalStackLayout>
 
 
         </ScrollView>
-        <controls:MovieInfoBox Media="{Binding SelectedMedia}" 
-                               VerticalOptions="End"/>
+
+        <controls:MovieInfoBox  Media="{Binding SelectedMedia}"
+                                VerticalOptions="End"
+                                IsVisible="{Binding ShowMovieInfoBox}"
+                                Closed="MovieInfoBox_Closed"
+                                />
+
     </Grid>
 
     

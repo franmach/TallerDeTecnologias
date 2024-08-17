@@ -21,6 +21,16 @@ public partial class MainPage : ContentPage
         await _homeViewModel.InitializeAsync();
     }
 
+    //evento para controlar la seleccion de peliculas en la mainpage
+    private void MovieRow_MediaSelected(object sender, Controls.MediaSelectEventsArgs e)
+    {
+        _homeViewModel.SelectMediaCommand.Execute(e.Media);
+    }
+    //evento para cerrar el infoBox
+    private void MovieInfoBox_Closed(object sender, EventArgs e)
+    {
+        _homeViewModel.SelectMediaCommand.Execute(null);
+    }
     //private async void OnLabelTapped(object sender, EventArgs e)
     //{
     //    var selectedLabel = sender as Label;

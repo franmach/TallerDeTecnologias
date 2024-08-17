@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ObligatorioTT.Models;
 using ObligatorioTT.Services;
 
@@ -22,7 +23,11 @@ namespace ObligatorioTT.ViewModels
         private Media _trendingMovie;
 
         [ObservableProperty]
-        private Media _selectedMedia;
+        [NotifyPropertyChangedFor(nameof(ShowMovieInfoBox))]
+        public Media? _selectedMedia;
+
+        public bool ShowMovieInfoBox => SelectedMedia is not null;
+
         public ObservableCollection<Media> Trending { get; set; } = new();
         public ObservableCollection<Media> TopRated { get; set; } = new();
         public ObservableCollection<Media> Popular { get; set; } = new();
@@ -70,5 +75,19 @@ namespace ObligatorioTT.ViewModels
                 collection.Add(media);
             }
         }
+
+        [RelayCommand]
+        private void SelectMedia(Media? media = null)
+        {
+            if (media is not null) 
+            {
+                if(media.Id == SelectedMedia?.Id)
+                {
+                    media = null;
+                }
+            }
+            SelectedMedia = media;  
+        }
+        
     }
 }

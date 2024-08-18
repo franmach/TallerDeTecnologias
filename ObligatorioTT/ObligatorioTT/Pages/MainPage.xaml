@@ -63,24 +63,34 @@
             <VerticalStackLayout>
                 <Grid HeightRequest="500">
                     <Image Aspect="Center"
-                       Style="{StaticResource ImageStyle}"
-                       VerticalOptions="Start"
-                       Opacity="0.8">
+                           HeightRequest="350"
+                           Style="{StaticResource ImageStyle}"
+                           VerticalOptions="Start"
+                           Opacity="0.8">
                         <Image.Source>
                             <UriImageSource Uri="{Binding TrendingMovie.Thumbnail}"/>
                         </Image.Source>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
+                                                  CommandParameter="{Binding TrendingMovie}"/>
+                        </Image.GestureRecognizers>
                     </Image>
+                    
                     <Grid VerticalOptions="Start"
                       HeightRequest="35"
                       Margin="0, 35, 0, 0">
                         <FlexLayout JustifyContent="SpaceAround"
-                                VerticalOptions="Center">
-                            <Label Text="TV Shows"
-                               Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Movies"
-                               Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Categories"
-                               Style="{StaticResource MenuLabel}"/>
+                                    VerticalOptions="Center">
+                            <Label Text="Series"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Peliculas"
+                                   Style="{StaticResource MenuLabel}"/>
+                            <Label Text="Categorias"
+                                   Style="{StaticResource MenuLabel}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="CategoriesMenu_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </FlexLayout>
                     </Grid>
                     <HorizontalStackLayout VerticalOptions="End"
@@ -130,23 +140,37 @@
                                TextColor="White"
                                FontAttributes="Bold"
                                FontSize="16"></Label>
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
+                              CommandParameter="{Binding TrendingMovie}"/>
+                            </VerticalStackLayout.GestureRecognizers>
                         </VerticalStackLayout>
+                                                
                     </HorizontalStackLayout>
                 </Grid>
-                <controls:MovieRow Heading="Mejores valoradas"
-                Movies="{Binding TopRated}"
-                IsLarge="False"/>
-                <controls:MovieRow Heading="Populares"
-                Movies="{Binding Popular}"
-                IsLarge="True"/>
-                <controls:MovieRow Heading="Trendencias"
-                Movies="{Binding Trending}"
-                IsLarge="False"/>
-                <controls:MovieRow Heading="Próximamente"
-                Movies="{Binding Upcoming}"
-                IsLarge="False"/>
+                <controls:MovieRow Heading="Mejores valoradas" 
+                                    Movies="{Binding TopRated}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
+                <controls:MovieRow Heading="Populares" 
+                                    Movies="{Binding Popular}" 
+                                    IsLarge="True"
+                                    MediaSelected="MovieRow_MediaSelected"/>
+                <controls:MovieRow Heading="Trendencias" 
+                                    Movies="{Binding Trending}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
+                <controls:MovieRow Heading="Próximamente" 
+                                    Movies="{Binding Upcoming}" 
+                                    IsLarge="False"
+                                    MediaSelected="MovieRow_MediaSelected"/>
             </VerticalStackLayout>
         </ScrollView>
+        <controls:MovieInfoBox  Media="{Binding SelectedMedia}"
+                                VerticalOptions="End"
+                                IsVisible="{Binding ShowMovieInfoBox}"
+                                Closed="MovieInfoBox_Closed"
+                                />
     </Grid>
 
 

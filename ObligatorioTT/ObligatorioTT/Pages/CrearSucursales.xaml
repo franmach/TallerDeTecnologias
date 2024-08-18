@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.CrearSucursales"
+             Title="CrearSucursales">
+    <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
+   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto">
+
+        <!-- Campo de entrada para el nombre -->
+        <Entry x:Name="Nombre"
+        Placeholder="Nombre" 
+        Grid.Row="0" />
+        
+        <!-- Campo de entrada para la direccion -->
+        <Entry x:Name="Direccion"
+        Placeholder="Dirección" 
+        Grid.Row="1" />
+        
+        <!-- Campo de entrada para el teléfono -->
+        <Entry x:Name="Telefono"
+        Placeholder="Teléfono" 
+        Grid.Row="2" />
+
+        <!-- Botón para agregar un nuevo cliente -->
+        <Button Text="Agregar Sucursal"
+         x:Name="btnAgregarSucursal"
+         Grid.Row="3"
+         Clicked="btnAgregarSucursal_Clicked" />
+
+        <!-- Mensaje de estado -->
+        <Label x:Name="statusMessage"
+        TextColor="White"
+        Grid.Row="4" />
+    </Grid>
+</ContentPage>

@@ -47,12 +47,35 @@ namespace ObligatorioTT.Pages
 
                 statusMessage.Text = "Usuario agregado correctamente";
                 Nombre.Text = Telefono.Text = Email.Text = Password.Text = RutaFoto.Text = string.Empty;
+                await Shell.Current.GoToAsync($"///{nameof(Login)}");
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error in btnAgregarUsuario_Clicked: {ex.Message}");
                 statusMessage.Text = "Error al agregar usuario";
             }
+        }
+
+        private async void Foto_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var photo = await MediaPicker.CapturePhotoAsync();
+                if (photo != null)
+                {
+                    var stream = await photo.OpenReadAsync();
+                    await DisplayAlert("Genial", "Ya sacaste la foto", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("ERROR", "No se pudo conectar con la camara", "Cerrar");
+
+
+            }
+
+
         }
     }
 }

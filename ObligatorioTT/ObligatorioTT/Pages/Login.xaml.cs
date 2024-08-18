@@ -1,20 +1,43 @@
 using ObligatorioTT.Services;
 using ObligatorioTT.ViewModels;
 using System.Xml;
+using ObligatorioTT.Models;
+using Plugin.Fingerprint.Abstractions;
+using Plugin.Fingerprint;
+using Microsoft.Maui.Controls;
+using System.Runtime.Intrinsics.X86;
 namespace ObligatorioTT.Pages;
 
 public partial class Login : ContentPage
 {
+    private readonly Repository _repository;
 
-    public Login( )
+    public Login(Repository repository)
     {
         InitializeComponent();
+        _repository = repository;
+        BindingContext = _repository;
+
     }
 
     private async void btnInicioSesion_Clicked(object sender, EventArgs e)
     {
+        List<Usuario> usuarios = await App.ObligatorioRepo.GetAllUsuarios();
+        foreach (var u in usuarios)
+        {
+            if (u.email == userEmail.Text) {
+                //usuario logeado
+                await Shell.Current.GoToAsync($"{nameof(Loading)}");
 
-        await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
+            } 
+            else
+		    {
+			    //usuario no logeado
+			    await Shell.Current.GoToAsync($"//{nameof(Login)}");
+
+            }
+
+        }
     }
 
 
@@ -23,34 +46,40 @@ public partial class Login : ContentPage
     private async void On_Tapped(object sender, EventArgs e)
     {
         Registrarme.TextColor = Colors.White; // Cambia el color al hacer tap
-        await Navigation.PushAsync(new CrearPerfil());
+        await Shell.Current.GoToAsync($"//{nameof(CrearPerfil)}");
     }
 
-    private async void Foto_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var photo = await MediaPicker.CapturePhotoAsync();
-            if (photo != null)
-            {
-                var stream = await photo.OpenReadAsync();
-                await DisplayAlert("Genial", "Ya sacaste la foto", "OK");
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("ERROR", "No se pudo conectar con la camara", "Cerrar");
-
-
-        }
-
-
-    }
+   
     protected override async void OnDisappearing()
     {
         base.OnDisappearing();
 
         // Aplicar animación al desaparecer
         await this.ScaleTo(0.5, 250, Easing.CubicOut);
+    }
+
+
+    private async void btnHuella_Clicked(object sender, EventArgs e)
+    {
+        if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            await DisplayAlert("Plataforma", "Esta plataforma no soporta el uso de huella dactilar", "Cerrar");
+        }
+        else
+        {
+
+            var request = new AuthenticationRequestConfiguration("demo", "probando huella");
+
+            var result = await CrossFingerprint.Current.AuthenticateAsync(request);
+
+            if (result.Authenticated)
+            {
+                await DisplayAlert("Autenticacion", "Acceso correcto", "Cerrar");
+            }
+            else
+            {
+                await DisplayAlert("Error en la autenticacion", "Acceso denegado", "Cerrar");
+            }
+        }
     }
 }

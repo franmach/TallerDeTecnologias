@@ -41,5 +41,21 @@ namespace ObligatorioTT
                 StatusMessage = $"Error al agregar usuario: {ex.Message}";
             }
         }
+
+        public async Task<List<Usuario>> GetAllUsuarios()
+        {
+            // TODO: Init then retrieve a list of Person objects from the database into a list
+            try
+            {
+                await Init();
+                return await conn.Table<Usuario>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+
+            return new List<Usuario>();
+        }
     }
 }

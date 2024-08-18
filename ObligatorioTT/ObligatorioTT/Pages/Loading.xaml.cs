@@ -11,20 +11,16 @@ public partial class Loading : ContentPage
 
         _authService = authService;
 	}
+	
 
-	protected async override void OnNavigatedTo(NavigatedToEventArgs args)
+    protected async override void OnNavigatedTo(NavigatedToEventArgs args)
 	{
 		base.OnNavigatedTo(args);
 
-		if (await _authService.IsAuthenticatedAsync())
-		{
-            //usuario logeado
-            await Shell.Current.GoToAsync($"{nameof(MainPage)}");
-        }
-        else
-		{
-			//usuario no logeado
-			await Shell.Current.GoToAsync($"//{nameof(Login)}");
-		}
-	}
+
+        //usuario logeado
+        await Shell.Current.GoToAsync($"///{nameof(MainPage)}");
+
+
+    }
 }

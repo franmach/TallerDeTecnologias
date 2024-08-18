@@ -39,8 +39,8 @@
                 Margin="10"
                 Clicked="CloseButton_Clicked">
             <Button.Shadow>
-                <Shadow Brush="Red"
-                        Offset="-10, 10"
+                <Shadow Brush="#502bd4"
+                        Offset="-20, 20"
                         Radius="40"
                         Opacity="1" 
                         />

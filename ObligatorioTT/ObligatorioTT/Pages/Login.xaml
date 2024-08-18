@@ -25,7 +25,7 @@
         </HorizontalStackLayout>
 
         <Entry 
-            x:Name="userEmail"
+            x:Name="email"
             Placeholder="Email"
             PlaceholderColor="Black"
             VerticalOptions="Center" 
@@ -33,6 +33,7 @@
              WidthRequest="200"/>
         <Entry 
             Placeholder="Contraseña"
+            x:Name="password"
             IsPassword="True"
             PlaceholderColor="Black"
             VerticalOptions="Center" 

@@ -14,8 +14,8 @@
         <ShellContent
             Title="Buscar"
             Icon="Resources/Images/lupa.png"
-            ContentTemplate="{DataTemplate pages:Profile}"
-            Route="Profile">
+            ContentTemplate="{DataTemplate pages:Login}"
+            Route="Login">
         </ShellContent>
         <ShellContent
              Title="Loading"
@@ -43,8 +43,8 @@
         <ShellContent
              Title="Profile"
              Icon="Resources/Images/user.png"
-             ContentTemplate="{DataTemplate pages:Login}"
-             Route="Login">
+             ContentTemplate="{DataTemplate pages:Profile}"
+             Route="Profile">
         </ShellContent>
        
     </TabBar>

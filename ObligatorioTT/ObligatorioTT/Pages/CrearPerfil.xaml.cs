@@ -26,7 +26,7 @@ namespace ObligatorioTT.Pages
                 string telefono = Telefono.Text;
                 string email = Email.Text;
                 string password = Password.Text;
-                //string rutaFoto = RutaFoto.Text;
+                string rutaFoto = Foto.Text;  // Get the file path from Foto.Text
 
                 if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
@@ -40,13 +40,14 @@ namespace ObligatorioTT.Pages
                     telefono = telefono,
                     email = email,
                     password = password,
-                    //rutaFoto = rutaFoto
+                    rutaFoto = rutaFoto  
                 };
 
                 await _repository.AddNewUsuarioAsync(nuevoUsuario);
 
                 statusMessage.Text = "Usuario agregado correctamente";
-                Nombre.Text = Telefono.Text = Email.Text = Password.Text /*= RutaFoto.Text*/ = string.Empty;
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text = Foto.Text = statusMessage.Text = string.Empty;
+
             }
             catch (Exception ex)
             {
@@ -54,6 +55,8 @@ namespace ObligatorioTT.Pages
                 statusMessage.Text = "Error al agregar usuario";
             }
         }
+    
+
 
         private async void Foto_Clicked(object sender, EventArgs e)
         {
@@ -62,18 +65,20 @@ namespace ObligatorioTT.Pages
                 var photo = await MediaPicker.CapturePhotoAsync();
                 if (photo != null)
                 {
-                    var stream = await photo.OpenReadAsync();
-                    await DisplayAlert("Genial", "Ya sacaste la foto", "OK");
+                    var filePath = Path.Combine(FileSystem.AppDataDirectory, $"{Guid.NewGuid()}.jpg");
+                    using var stream = await photo.OpenReadAsync();
+                    using var fileStream = File.OpenWrite(filePath);
+                    await stream.CopyToAsync(fileStream);
+
+                    Foto.Text = filePath; // Store the file path in the button's text
+                    await DisplayAlert("Genial", "Foto tomada y guardada", "OK");
                 }
             }
             catch (Exception ex)
             {
-                await DisplayAlert("ERROR", "No se pudo conectar con la camara", "Cerrar");
-
-
+                await DisplayAlert("ERROR", "No se pudo conectar con la cámara", "Cerrar");
             }
-
-
         }
+
     }
 }

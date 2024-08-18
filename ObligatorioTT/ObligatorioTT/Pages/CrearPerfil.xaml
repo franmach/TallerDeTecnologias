@@ -37,14 +37,15 @@
         <!-- Campo de entrada para la ruta de la foto -->
         <Button
             x:Name="Foto"
-            Text="Tomar selfie"
+            Text="Tomar foto"
             TextColor="White"
             BackgroundColor="Black"
             Clicked="Foto_Clicked"
             WidthRequest="150"
+            Grid.Row="4"
         />
 
-        <!-- Botón para agregar un nuevo cliente -->
+        <!-- Botón para agregar un nuevo usuario -->
         <Button Text="Agregar Usuario"
             x:Name="btnAgregarUsuario"
             Grid.Row="5"
@@ -52,7 +53,7 @@
 
         <!-- Mensaje de estado -->
         <Label x:Name="statusMessage"
-           TextColor="White"
+           TextColor="#cac0f2"
            Grid.Row="6" />
     </Grid>
 

@@ -13,40 +13,44 @@
     <TabBar>
         <ShellContent
             Title="Buscar"
-            Icon="Resources/Images/lupa.png"
-            ContentTemplate="{DataTemplate pages:Profile}"
-            Route="Profile">
+            Icon="home"
+            ContentTemplate="{DataTemplate pages:MainPage}"
+            Route="BuscarPage">
+            <!-- Ruta única -->
         </ShellContent>
+
         <ShellContent
              Title="Loading"
-             Icon="Resources/Images/fire.png"
+             Icon="fire"
              ContentTemplate="{DataTemplate pages:Loading}"
-             Route="Loading"
-            Shell.TabBarIsVisible="False">
+             Route="LoadingPage"
+             Shell.TabBarIsVisible="False">
         </ShellContent>
 
         <ShellContent
              Title="Home"
-             Icon="Resources/Images/home.png"
+             Icon="home"
              ContentTemplate="{DataTemplate pages:MainPage}"
-             Route="MainPage">  
+             Route="HomePage">
+            <!-- Ruta única -->
         </ShellContent>
-        
-        
+
         <ShellContent
              Title="Favorites"
-             Icon="Resources/Images/fav.png"
-             ContentTemplate="{DataTemplate pages:CrearPerfil}"
-             Route="CrearPerfil">  
+             Icon="fav"
+             ContentTemplate="{DataTemplate pages:MainPage}"
+             Route="FavoritesPage">
+            <!-- Ruta única -->
         </ShellContent>
-        
+
         <ShellContent
              Title="Profile"
-             Icon="Resources/Images/user.png"
+             Icon="user"
              ContentTemplate="{DataTemplate pages:Login}"
-             Route="Login">
+             Route="ProfilePage">
+            <!-- Ruta única -->
         </ShellContent>
-       
+
     </TabBar>
    
 

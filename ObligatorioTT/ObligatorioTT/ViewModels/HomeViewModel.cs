@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ObligatorioTT.Models;
 using ObligatorioTT.Services;
 
@@ -13,13 +14,19 @@ namespace ObligatorioTT.ViewModels
     public partial class HomeViewModel : ObservableObject
     {
         private readonly TmdbService _tmdbService;
-        public HomeViewModel(TmdbService tmdbService) 
+        public HomeViewModel(TmdbService tmdbService)
         {
             _tmdbService = tmdbService;
         }
- 
+
         [ObservableProperty]
         private Media _trendingMovie;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(ShowMovieInfoBox))]
+        public Media? _selectedMedia;
+
+        public bool ShowMovieInfoBox => SelectedMedia is not null;
 
         public ObservableCollection<Media> Trending { get; set; } = new();
         public ObservableCollection<Media> TopRated { get; set; } = new();
@@ -57,6 +64,8 @@ namespace ObligatorioTT.ViewModels
             SetMediaCollection(popularList, Popular);
             SetMediaCollection(upcomingList, Upcoming);
             SetMediaCollection(actionList, ActionMovies);
+
+            SelectedMedia = TrendingMovie;
         }
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
         {
@@ -66,5 +75,19 @@ namespace ObligatorioTT.ViewModels
                 collection.Add(media);
             }
         }
+
+        [RelayCommand]
+        private void SelectMedia(Media? media = null)
+        {
+            if (media is not null) 
+            {
+                if(media.Id == SelectedMedia?.Id)
+                {
+                    media = null;
+                }
+            }
+            SelectedMedia = media;  
+        }
+        
     }
 }

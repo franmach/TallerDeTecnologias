@@ -26,7 +26,7 @@ namespace ObligatorioTT.Pages
                 string telefono = Telefono.Text;
                 string email = Email.Text;
                 string password = Password.Text;
-                string rutaFoto = RutaFoto.Text;
+                //string rutaFoto = RutaFoto.Text;
 
                 if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
@@ -40,15 +40,13 @@ namespace ObligatorioTT.Pages
                     telefono = telefono,
                     email = email,
                     password = password,
-                    rutaFoto = rutaFoto
+                    //rutaFoto = rutaFoto
                 };
 
                 await _repository.AddNewUsuarioAsync(nuevoUsuario);
 
                 statusMessage.Text = "Usuario agregado correctamente";
-                Nombre.Text = Telefono.Text = Email.Text = Password.Text = RutaFoto.Text = string.Empty;
-                await Shell.Current.GoToAsync($"///{nameof(Login)}");
-
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text /*= RutaFoto.Text*/ = string.Empty;
             }
             catch (Exception ex)
             {

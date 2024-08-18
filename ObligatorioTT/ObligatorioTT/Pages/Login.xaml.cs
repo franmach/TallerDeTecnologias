@@ -23,22 +23,27 @@ public partial class Login : ContentPage
     private async void btnInicioSesion_Clicked(object sender, EventArgs e)
     {
         List<Usuario> usuarios = await App.ObligatorioRepo.GetAllUsuarios();
+        bool usuarioEncontrado = false;
+
         foreach (var u in usuarios)
         {
-            if (u.email == userEmail.Text) {
-                //usuario logeado
+            if (u.email == userEmail.Text)
+            {
+                // Usuario logeado
                 await Shell.Current.GoToAsync($"{nameof(Loading)}");
-
-            } 
-            else
-		    {
-			    //usuario no logeado
-			    await Shell.Current.GoToAsync($"//{nameof(Login)}");
-
+                usuarioEncontrado = true;
+                break; // Salir del ciclo al encontrar un usuario válido
             }
+        }
 
+        if (!usuarioEncontrado)
+        {
+            await DisplayAlert("Error", "Usuario o contraseña invalidos", "Cerrar");
+            // Usuario no encontrado
+            await Shell.Current.GoToAsync($"//{nameof(Login)}");
         }
     }
+
 
 
 
@@ -49,14 +54,6 @@ public partial class Login : ContentPage
         await Shell.Current.GoToAsync($"//{nameof(CrearPerfil)}");
     }
 
-   
-    protected override async void OnDisappearing()
-    {
-        base.OnDisappearing();
-
-        // Aplicar animación al desaparecer
-        await this.ScaleTo(0.5, 250, Easing.CubicOut);
-    }
 
 
     private async void btnHuella_Clicked(object sender, EventArgs e)

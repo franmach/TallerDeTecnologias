@@ -18,10 +18,12 @@ namespace ObligatorioTT
 
 
         }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Shell.Current.GoToAsync($"///{nameof(Login)}");
+            await Shell.Current.GoToAsync($"///{nameof(Login)}");
         }
+
+       
     }
 }

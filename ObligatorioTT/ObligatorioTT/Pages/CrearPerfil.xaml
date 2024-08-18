@@ -35,10 +35,14 @@
            Grid.Row="3" />
 
         <!-- Campo de entrada para la ruta de la foto -->
-        <Entry x:Name="RutaFoto"
-           PlaceholderColor="Black"
-           Placeholder="Ruta de la Foto" 
-           Grid.Row="4" />
+        <Button
+            x:Name="Foto"
+            Text="Tomar selfie"
+            TextColor="White"
+            BackgroundColor="Black"
+            Clicked="Foto_Clicked"
+            WidthRequest="150"
+        />
 
         <!-- Botón para agregar un nuevo cliente -->
         <Button Text="Agregar Usuario"

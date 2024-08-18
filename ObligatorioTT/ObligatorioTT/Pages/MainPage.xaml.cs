@@ -10,9 +10,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         _homeViewModel = homeViewModel;
-        BindingContext = _homeViewModel;
-
-       
+        BindingContext = _homeViewModel;  
     }
 
     protected async override void OnAppearing()
@@ -20,6 +18,24 @@ public partial class MainPage : ContentPage
         base.OnAppearing();
         await _homeViewModel.InitializeAsync();
     }
+
+    //evento para controlar la seleccion de peliculas en la mainpage
+    private void MovieRow_MediaSelected(object sender, Controls.MediaSelectEventsArgs e)
+    {
+        _homeViewModel.SelectMediaCommand.Execute(e.Media);
+    }
+    //evento para cerrar el infoBox
+    private void MovieInfoBox_Closed(object sender, EventArgs e)
+    {
+        _homeViewModel.SelectMediaCommand.Execute(null);
+    }
+
+    //evento del menu de categorias
+    private async void CategoriesMenu_Tapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(CategoriesPage));
+    }
+
 
     //private async void OnLabelTapped(object sender, EventArgs e)
     //{

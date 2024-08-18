@@ -1,8 +1,15 @@
 using ObligatorioTT.Models;
+using ObligatorioTT.ViewModels;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace ObligatorioTT.Controls;
 
+public class MediaSelectEventsArgs : EventArgs
+{
+    public Media Media { get; set; }
+    public MediaSelectEventsArgs(Media media) => Media = media;
+}
 public partial class MovieRow : ContentView
 {
 	public static readonly BindableProperty HeadingProperty = 
@@ -14,9 +21,11 @@ public partial class MovieRow : ContentView
     public static readonly BindableProperty IsLargeProperty =
         BindableProperty.Create(nameof(IsLarge), typeof(bool), typeof(MovieRow), false);
 
+    public event EventHandler<MediaSelectEventsArgs> MediaSelected;
     public MovieRow()
     {
         InitializeComponent();
+        MediaDetailsCommand = new Command(ExecuteMediaDetailsCommand);
     }
 
   
@@ -37,5 +46,15 @@ public partial class MovieRow : ContentView
     }
 
     public bool IsNotLarge => !IsLarge;
-    
+
+    public ICommand MediaDetailsCommand { get; private set; }
+    private void ExecuteMediaDetailsCommand(object parameter)
+    {
+        if(parameter is Media media && media is not null)
+        {
+            MediaSelected?.Invoke(this, new MediaSelectEventsArgs(media));
+        }
+    }
+
+
 }

@@ -27,7 +27,8 @@ namespace ObligatorioTT
             builder.Services.AddTransient<Loading>();
             builder.Services.AddTransient<Login>();
             builder.Services.AddTransient<Profile>();
-
+            builder.Services.AddSingleton<CategoriesPage>();
+            builder.Services.AddSingleton<CategoriesViewModel>();
 
 
 

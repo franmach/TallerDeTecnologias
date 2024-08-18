@@ -38,6 +38,7 @@ public partial class CrearSucursales : ContentPage
             };
 
             await _repository.AddNewSucursalAsync(nuevaSucursal);
+            await DisplayAlert("Éxito", "Sucursal agregada correctamente", "OK");
 
             statusMessage.Text = "Sucursal agregada correctamente";
             Nombre.Text = Direccion.Text = Telefono.Text = string.Empty;
@@ -45,9 +46,12 @@ public partial class CrearSucursales : ContentPage
         catch (Exception ex)
         {
             Console.WriteLine($"Error in btnAgregarUsuario_Clicked: {ex.Message}");
-            statusMessage.Text = "Error al agregar sucursal";
+            await DisplayAlert("Error", "Error al agregar sucursal", "OK");
         }
     }
 
+    private void btnVerSucursales_Clicked(object sender, EventArgs e)
+    {
 
+    }
 }

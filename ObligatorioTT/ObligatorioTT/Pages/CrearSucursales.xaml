@@ -31,5 +31,11 @@
         <Label x:Name="statusMessage"
         TextColor="White"
         Grid.Row="4" />
+        
+        <Button Text="Ver Sucursales"
+        x:Name="btnVerSucursales"
+        Grid.Row="5"
+        Clicked="btnVerSucursales_Clicked" />
+
     </Grid>
 </ContentPage>

@@ -40,8 +40,8 @@
                                 </Image.Source>
                             </Image>
                             <Image Aspect="AspectFill"
-                                    HeightRequest="120"
-                                    WidthRequest="150"
+                                    HeightRequest="150"
+                                    WidthRequest="120"
                                     IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsLarge}"
                                     >
                                 <Image.Source>

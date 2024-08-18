@@ -10,6 +10,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <!-- Estilo común para Label -->
             <Style TargetType="Label" x:Key="MenuLabel">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
@@ -17,22 +18,53 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="Shadow">
                     <Setter.Value>
-                        <Shadow Brush="White" 
-                            Offset="0,0" 
-                            Radius="8"/>
+                        <Shadow Brush="White" Offset="0,0" Radius="8"/>
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Estilo para imágenes en Windows -->
+            <OnPlatform x:TypeArguments="Style" x:Key="ImageStyle">
+                <On Platform="WinUI">
+                    <Style TargetType="Image">
+                        <Setter Property="HeightRequest" Value="500"/>
+                        <Setter Property="WidthRequest" Value="500"/>
+                    </Style>
+                </On>
+                <On Platform="iOS, Android">
+                    <Style TargetType="Image">
+                        <Setter Property="HeightRequest" Value="350"/>
+                        <Setter Property="WidthRequest" Value="350"/>
+                    </Style>
+                </On>
+            </OnPlatform>
+
+            <!-- Estilo para iconos en Windows -->
+            <OnPlatform x:TypeArguments="Style" x:Key="IconStyle">
+                <On Platform="WinUI">
+                    <Style TargetType="Image">
+                        <Setter Property="HeightRequest" Value="60"/>
+                        <Setter Property="WidthRequest" Value="60"/>
+                    </Style>
+                </On>
+                <On Platform="iOS, Android">
+                    <Style TargetType="Image">
+                        <Setter Property="HeightRequest" Value="22"/>
+                        <Setter Property="WidthRequest" Value="22"/>
+                    </Style>
+                </On>
+            </OnPlatform>
+
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <Grid Margin="0"
-          Padding="0">
+
+    <Grid Margin="0" Padding="0">
         <ScrollView BackgroundColor="black">
             <VerticalStackLayout>
                 <Grid HeightRequest="500">
                     <Image Aspect="Center"
                            HeightRequest="350"
+                           Style="{StaticResource ImageStyle}"
                            VerticalOptions="Start"
                            Opacity="0.8">
                         <Image.Source>
@@ -45,8 +77,8 @@
                     </Image>
                     
                     <Grid VerticalOptions="Start"
-                          HeightRequest="35"
-                          Margin="0, 35, 0, 0">
+                      HeightRequest="35"
+                      Margin="0, 35, 0, 0">
                         <FlexLayout JustifyContent="SpaceAround"
                                     VerticalOptions="Center">
                             <Label Text="Series"
@@ -61,66 +93,60 @@
                             </Label>
                         </FlexLayout>
                     </Grid>
-                    
                     <HorizontalStackLayout VerticalOptions="End"
-                       HorizontalOptions="Center"
-                                           Spacing="70">
+                   HorizontalOptions="Center"
+                                       Spacing="70">
                         <VerticalStackLayout>
-                            <Label Text="+" 
-                                   HorizontalOptions="Center"
-                                   FontAttributes="Bold"
-                                   FontSize="22"
-                                   TextColor="White">
+                            <Label Text="+"
+                               HorizontalOptions="Center"
+                               FontAttributes="Bold"
+                               FontSize="22"
+                               TextColor="White">
                             </Label>
                             <Label Text="MI LISTA"
-                                    HorizontalTextAlignment="Center"
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    TextColor="White">
-                            </Label> 
+                                HorizontalTextAlignment="Center"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="White">
+                            </Label>
                         </VerticalStackLayout>
 
                         <Border StrokeShape="RoundRectangle 5"
-                                    BackgroundColor="White"
-                                    Padding="20,5">
+                                BackgroundColor="White"
+                                Padding="20,5">
                             <HorizontalStackLayout Spacing="5"
-                                               VerticalOptions="Center">
+                                           VerticalOptions="Center">
                                 <Image Source="play"
-                                   Aspect="AspectFit"
-                                   HeightRequest="20"
-                                   WidthRequest="20">
+                               Aspect="AspectFit"
+                               Style="{StaticResource IconStyle}">
                                 </Image>
-                                <Label Text="PLAY"
-                                   TextColor="Black"
-                                   FontAttributes="Bold"
-                                   FontSize="16"></Label>
+                                <Label Text="TRAILER"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="16"></Label>
                             </HorizontalStackLayout>
                         </Border>
 
                         <VerticalStackLayout>
                             <Grid HorizontalOptions="Center">
-                              
-                                <Image
-                                    Margin="2"
-                                       HeightRequest="22"
-                                       WidthRequest="22"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Source="info">
+                                <Image Margin="2"
+                                   Style="{StaticResource IconStyle}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Source="info">
                                 </Image>
                             </Grid>
                             <Label Text="INFO"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="16"></Label>
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="16"></Label>
                             <VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
-                                                      CommandParameter="{Binding TrendingMovie}"/>
+                              CommandParameter="{Binding TrendingMovie}"/>
                             </VerticalStackLayout.GestureRecognizers>
                         </VerticalStackLayout>
-
+                                                
                     </HorizontalStackLayout>
-
                 </Grid>
                 <controls:MovieRow Heading="Mejores valoradas" 
                                     Movies="{Binding TopRated}" 
@@ -138,19 +164,14 @@
                                     Movies="{Binding Upcoming}" 
                                     IsLarge="False"
                                     MediaSelected="MovieRow_MediaSelected"/>
-
             </VerticalStackLayout>
-
-
         </ScrollView>
-
         <controls:MovieInfoBox  Media="{Binding SelectedMedia}"
                                 VerticalOptions="End"
                                 IsVisible="{Binding ShowMovieInfoBox}"
                                 Closed="MovieInfoBox_Closed"
                                 />
-
     </Grid>
 
-    
+
 </ContentPage>

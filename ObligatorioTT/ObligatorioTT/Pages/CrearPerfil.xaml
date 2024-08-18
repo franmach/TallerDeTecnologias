@@ -11,28 +11,38 @@
         <!-- Campo de entrada para el nombre -->
         <Entry x:Name="Nombre"
            Placeholder="Nombre" 
+           PlaceholderColor="Black"
            Grid.Row="0" />
 
         <!-- Campo de entrada para el teléfono -->
         <Entry x:Name="Telefono"
-           Placeholder="Teléfono" 
+               
+           Placeholder="Teléfono"
+           PlaceholderColor="Black"
            Grid.Row="1" />
 
         <!-- Campo de entrada para el email -->
         <Entry x:Name="Email"
-           Placeholder="Email" 
+           Placeholder="Email"
+           PlaceholderColor="Black"
            Grid.Row="2" />
 
         <!-- Campo de entrada para el password -->
         <Entry x:Name="Password"
            Placeholder="Password"
+           PlaceholderColor="Black"
            IsPassword="True"
            Grid.Row="3" />
 
         <!-- Campo de entrada para la ruta de la foto -->
-        <Entry x:Name="RutaFoto"
-           Placeholder="Ruta de la Foto" 
-           Grid.Row="4" />
+        <Button
+            x:Name="Foto"
+            Text="Tomar selfie"
+            TextColor="White"
+            BackgroundColor="Black"
+            Clicked="Foto_Clicked"
+            WidthRequest="150"
+        />
 
         <!-- Botón para agregar un nuevo cliente -->
         <Button Text="Agregar Usuario"

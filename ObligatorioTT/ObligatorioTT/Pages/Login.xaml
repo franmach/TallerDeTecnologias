@@ -7,7 +7,7 @@
              Shell.TabBarIsVisible="False"
              BackgroundColor="#cac0f2">
 
-    
+
     <VerticalStackLayout 
         
      
@@ -23,8 +23,9 @@
             </Image>
 
         </HorizontalStackLayout>
-       
+
         <Entry 
+            x:Name="userEmail"
             Placeholder="Email"
             PlaceholderColor="Black"
             VerticalOptions="Center" 
@@ -39,20 +40,18 @@
             WidthRequest="200"/>
 
         <Button
-            x:Name="Foto"
-            Text="Tomar selfie"
-            TextColor="White"
-            BackgroundColor="Black"
-            Clicked="Foto_Clicked"
-            WidthRequest="150"
-        />
-
-        <Button
             x:Name="btnInicioSesion"
             Text="Iniciar Sesion"
             Clicked="btnInicioSesion_Clicked"
             WidthRequest="200">
         </Button>
+        <ImageButton
+            x:Name="btnHuella"
+            Source="huella"
+            Clicked="btnHuella_Clicked"
+            WidthRequest="50">
+
+        </ImageButton>
         <Label
             Text="¿No tienes uno?  Crear perfil"
             x:Name="Registrarme"

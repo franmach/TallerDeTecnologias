@@ -42,6 +42,20 @@ namespace ObligatorioTT
                 StatusMessage = $"Error al agregar usuario: {ex.Message}";
             }
         }
+        public async Task<List<Usuario>> GetAllUsuarios()
+        {
+            try
+            {
+                await Init();
+                return await conn.Table<Usuario>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+
+            return new List<Usuario>();
+        }
 
         public async Task AddNewSucursalAsync(Sucursal sucursal)
         {
@@ -57,6 +71,7 @@ namespace ObligatorioTT
             }
         }
 
+      
         // Obtener todas las sucursales
         public async Task<List<Sucursal>> GetAllSucursalesAsync()
         {

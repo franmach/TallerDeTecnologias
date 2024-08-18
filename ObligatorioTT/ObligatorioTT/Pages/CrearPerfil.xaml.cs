@@ -26,7 +26,7 @@ namespace ObligatorioTT.Pages
                 string telefono = Telefono.Text;
                 string email = Email.Text;
                 string password = Password.Text;
-                string rutaFoto = RutaFoto.Text;
+                //string rutaFoto = RutaFoto.Text;
 
                 if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
@@ -40,19 +40,40 @@ namespace ObligatorioTT.Pages
                     telefono = telefono,
                     email = email,
                     password = password,
-                    rutaFoto = rutaFoto
+                    //rutaFoto = rutaFoto
                 };
 
                 await _repository.AddNewUsuarioAsync(nuevoUsuario);
 
                 statusMessage.Text = "Usuario agregado correctamente";
-                Nombre.Text = Telefono.Text = Email.Text = Password.Text = RutaFoto.Text = string.Empty;
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text /*= RutaFoto.Text*/ = string.Empty;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error in btnAgregarUsuario_Clicked: {ex.Message}");
                 statusMessage.Text = "Error al agregar usuario";
             }
+        }
+
+        private async void Foto_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var photo = await MediaPicker.CapturePhotoAsync();
+                if (photo != null)
+                {
+                    var stream = await photo.OpenReadAsync();
+                    await DisplayAlert("Genial", "Ya sacaste la foto", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("ERROR", "No se pudo conectar con la camara", "Cerrar");
+
+
+            }
+
+
         }
     }
 }

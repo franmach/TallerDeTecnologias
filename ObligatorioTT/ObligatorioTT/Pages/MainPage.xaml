@@ -59,11 +59,11 @@
     </ContentPage.Resources>
 
     <Grid Margin="0" Padding="0">
-        
+
         <ScrollView BackgroundColor="black">
-            
+
             <VerticalStackLayout>
-                
+
                 <Grid HeightRequest="500">
                     <Image Aspect="Center"
                            HeightRequest="350"
@@ -78,8 +78,8 @@
                                                   CommandParameter="{Binding TrendingMovie}"/>
                         </Image.GestureRecognizers>
                     </Image>
-                    
-                    <Grid VerticalOptions="Start"
+
+                    <!--<Grid VerticalOptions="Start"
                       HeightRequest="35"
                       Margin="0, 35, 0, 0">
                         <FlexLayout JustifyContent="SpaceAround"
@@ -95,11 +95,10 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </FlexLayout>
-                    </Grid>
+                    </Grid>-->
                     <HorizontalStackLayout VerticalOptions="End"
-                   HorizontalOptions="Center"
-                                       Spacing="70">
-                        
+                                        HorizontalOptions="Center"
+                                        Spacing="70">
                         <VerticalStackLayout>
                             <Grid HorizontalOptions="Center">
                                 <Image Margin="2"
@@ -117,11 +116,16 @@
                                FontSize="16"></Label>
                             <VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
-                              CommandParameter="{Binding TrendingMovie}"/>
+                                            CommandParameter="{Binding TrendingMovie}"/>
                             </VerticalStackLayout.GestureRecognizers>
                         </VerticalStackLayout>
-                                                
+
+                    
+
                     </HorizontalStackLayout>
+
+
+
                 </Grid>
                 <controls:MovieRow Heading="Mejores valoradas" 
                                     Movies="{Binding TopRated}" 
@@ -143,28 +147,20 @@
         </ScrollView>
         <Grid HeightRequest="35"
               VerticalOptions="Start">
-            <FlexLayout JustifyContent="SpaceBetween">
-                <Image Source="logon"
-                       
-                       Aspect="AspectFit"
-                       VerticalOptions="Start"
-                       HeightRequest="30"
-                       WidthRequest="30"></Image>
-            <HorizontalStackLayout>
-                <ImageButton Source="search"
-                             Aspect="AspectFill"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             Clicked="SearchButton_Clicked">
+            <FlexLayout JustifyContent="End">
+              
+                
 
-                </ImageButton>
-                    <ImageButton Source="userW"   
+                    <ImageButton 
+                       Source="user"   
                        Aspect="AspectFill"
-                       HeightRequest="30"
-                       WidthRequest="30">
+                       HeightRequest="35"
+                       WidthRequest="35"
+                       Clicked="UserButton_Clicked"
+                       Margin="10">
+                        
 
                     </ImageButton>
-                </HorizontalStackLayout>
             </FlexLayout>
         </Grid>
         <controls:MovieInfoBox  Media="{Binding SelectedMedia}"
@@ -172,7 +168,7 @@
                                 IsVisible="{Binding ShowMovieInfoBox}"
                                 Closed="MovieInfoBox_Closed"
                                 />
-        
+
     </Grid>
 
 

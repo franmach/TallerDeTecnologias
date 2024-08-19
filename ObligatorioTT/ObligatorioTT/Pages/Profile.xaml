@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ObligatorioTT.Pages.Profile"
-             Title="Perfil">
+             Title="Perfil"
+             BackgroundColor="#cac0f2"
+>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="ProfileLabelStyle">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="ProfileButtonStyle">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <VerticalStackLayout 
             HorizontalOptions="Center"
             VerticalOptions="Center"
@@ -10,33 +34,43 @@
             Spacing="25">
 
         <Border HeightRequest="160" 
-        WidthRequest="160"
-        StrokeShape="RoundRectangle 80,80,80,80"
-        HorizontalOptions="Center"
-        StrokeThickness="8"
-        Margin="0,0,0,0">
-            <Image
-        Aspect="AspectFill"
-        Source="{Binding rutaFoto}"  
-                HeightRequest="160"
-        WidthRequest="160"
-        VerticalOptions="Center"
-        HorizontalOptions="Center" />
+                WidthRequest="160"
+                StrokeShape="RoundRectangle 80,80,80,80"
+                HorizontalOptions="Center"
+                StrokeThickness="8"
+                Stroke="#3c3c3c"
+                BackgroundColor="#2b2b2b"
+                Margin="0">
+
+            <Image Aspect="AspectFill"
+                   Source="{Binding rutaFoto}"  
+                   HeightRequest="160"
+                   WidthRequest="160"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center">
+                <Image.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="White"/>
+                </Image.Behaviors>
+            </Image>
         </Border>
 
-        <Label 
-            Text="{Binding email}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            />
-        <Label 
-            Text="{Binding nombre}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            />
+        <Label Text="{Binding email}"
+               Style="{StaticResource ProfileLabelStyle}" />
 
-        <Button
-            Text="Logout"
-            Clicked="Button_Clicked" />
+        <Label Text="{Binding nombre}"
+               Style="{StaticResource ProfileLabelStyle}" />
+
+        <Label Text="{Binding telefono}"
+        Style="{StaticResource ProfileLabelStyle}" />
+
+        <Button Text="Logout"
+                Style="{StaticResource ProfileButtonStyle}"
+                Clicked="Button_Clicked" />
+
+        <Button  Text="Crear nuevo perfil"
+                BackgroundColor="Black"
+                TextColor="White"
+                 Clicked="btnNuevoPerfil_Clicked"></Button>
+
     </VerticalStackLayout>
 </ContentPage>

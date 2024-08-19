@@ -2,44 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.CrearSucursales"
-             Title="CrearSucursales">
-    <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
-   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto">
+             Title="Crear Sucursales"
+             BackgroundColor="{StaticResource BackgroundColor}">
+
+    <Grid Padding="15"
+          RowSpacing="10"
+          ColumnSpacing="10"
+          RowDefinitions="Auto,Auto,Auto,Auto,*,Auto,Auto">
 
         <!-- Campo de entrada para el nombre -->
         <Entry x:Name="Nombre"
-        Placeholder="Nombre" 
-        Grid.Row="0" />
-        
-        <!-- Campo de entrada para la direccion -->
+               Placeholder="Nombre"
+               Grid.Row="0"
+               BackgroundColor="White"
+               TextColor="{StaticResource TextColor}"
+               PlaceholderColor="{StaticResource PlaceholderColor}"
+               FontSize="18"
+               HeightRequest="50"
+               Margin="0,10,0,0"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Center" />
+
+        <!-- Campo de entrada para la dirección -->
         <Entry x:Name="Direccion"
-        Placeholder="Número, Calle, Ciudad, Departamento, País" 
-        Grid.Row="1" />
-        
+               Placeholder="Número, Calle, Ciudad, Departamento, País"
+               Grid.Row="1"
+               BackgroundColor="White"
+               TextColor="{StaticResource TextColor}"
+               PlaceholderColor="{StaticResource PlaceholderColor}"
+               FontSize="18"
+               HeightRequest="50"
+               Margin="0,10,0,0"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Center" />
+
         <!-- Campo de entrada para el teléfono -->
         <Entry x:Name="Telefono"
-        Placeholder="Teléfono" 
-        Grid.Row="2" />
+               Placeholder="Teléfono"
+               Grid.Row="2"
+               BackgroundColor="White"
+               TextColor="{StaticResource TextColor}"
+               PlaceholderColor="{StaticResource PlaceholderColor}"
+               FontSize="18"
+               HeightRequest="50"
+               Margin="0,10,0,0"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Center" />
 
-        <!-- Botón para agregar un nuevo cliente -->
+        <!-- Botón para agregar una nueva sucursal -->
         <Button Text="Agregar Sucursal"
-         x:Name="btnAgregarSucursal"
-         Grid.Row="3"
-         Clicked="btnAgregarSucursal_Clicked"
-         HorizontalOptions="Center"
-         Margin="0,20,0,0"/>
+                x:Name="btnAgregarSucursal"
+                Grid.Row="3"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                TextColor="White"
+                FontSize="16"
+                CornerRadius="25"
+                HeightRequest="50"
+                Margin="0,20,0,0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Clicked="btnAgregarSucursal_Clicked" />
 
-        <!-- Mensaje de estado -->
-        <Label x:Name="statusMessage"
-        TextColor="White"
-        Grid.Row="4" />
-        
+      
+
+        <!-- Botón para ver las sucursales -->
         <Button Text="Ver Sucursales"
-        x:Name="btnVerSucursales"
-        Grid.Row="5"
-        HorizontalOptions="Center"
-        Margin="0,20,0,0"
-        Clicked="btnVerSucursales_Clicked" />
+                x:Name="btnVerSucursales"
+                Grid.Row="5"
+                BackgroundColor="{StaticResource SecondaryColor}"
+                TextColor="White"
+                FontSize="16"
+                CornerRadius="25"
+                HeightRequest="50"
+                Margin="0,20,0,0"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Clicked="btnVerSucursales_Clicked" />
 
     </Grid>
 </ContentPage>

@@ -1,12 +1,14 @@
 
 using ObligatorioTT.Pages;
+using ObligatorioTT.ViewModels;
+using ObligatorioTT.Services;
 
 namespace ObligatorioTT.Pages;
 
 public partial class MainPage : ContentPage
 {
     private readonly HomeViewModel _homeViewModel;
-    private readonly TmdbService _tmdbService;
+    private readonly SearchViewModel _searchViewModel;
 
     public MainPage(HomeViewModel homeViewModel)
     {
@@ -50,9 +52,14 @@ public partial class MainPage : ContentPage
         }
     }
 
+    
+   
 
-    private async void OnSearchButtonClicked(object sender, EventArgs e)
+    private async void UserButton_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(SearchPage));
+        await Navigation.PushAsync(new Profile());
+
     }
+
+   
 }

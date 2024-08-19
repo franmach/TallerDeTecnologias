@@ -14,7 +14,8 @@ namespace ObligatorioTT
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
             Routing.RegisterRoute(nameof(Loading), typeof(Loading));
             Routing.RegisterRoute(nameof(CrearPerfil), typeof(CrearPerfil));
-
+            Routing.RegisterRoute(nameof(Sucursales), typeof(Sucursales));
+            Routing.RegisterRoute(nameof(CrearSucursales), typeof(CrearSucursales));
 
 
         }

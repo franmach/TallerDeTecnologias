@@ -14,6 +14,8 @@ namespace ObligatorioTT
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                ////MAPAAAAS
+                //.UseMauiMaps()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -47,6 +49,8 @@ namespace ObligatorioTT
             // Añadir Repository como singleton
             string rutaDB = FileAccessHelper.GetLocalFilePath("usuariosdb.db3");
             builder.Services.AddSingleton<Repository>(s => ActivatorUtilities.CreateInstance<Repository>(s, rutaDB));
+            builder.Services.AddSingleton<SucursalesViewModel>(); // Registro de SucursalesViewModel
+            builder.Services.AddSingleton<Sucursales>(); // Registro de la página Sucursales
 
             return builder.Build();
         }

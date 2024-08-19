@@ -122,6 +122,9 @@
 	  <MauiXaml Update="Pages\CrearPerfil.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Sucursales.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Video.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

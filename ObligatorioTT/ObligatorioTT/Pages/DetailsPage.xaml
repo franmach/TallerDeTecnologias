@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.DetailsPage"
+             xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             x:DataType="vm:DetailsViewModel"
+             Shell.BackgroundColor="Black"
+             xmlns:services="clr-namespace:ObligatorioTT.Services"
+             BackgroundColor="Black"
+             Title="">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="sub">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView BackgroundColor="Black">
+        <Grid>
+            <ActivityIndicator Color="White"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HeightRequest="50"
+                               WidthRequest="50" 
+                               IsRunning="{Binding IsBusy}"/>
+
+            <VerticalStackLayout IsVisible="False">
+                <VerticalStackLayout.Triggers>
+                    <DataTrigger TargetType="VerticalStackLayout"
+                                 Binding="{Binding IsBusy}"
+                                 Value="False">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </VerticalStackLayout.Triggers>
+                <WebView Source="{Binding MainTrailerUrl}"
+                         HeightRequest="250"
+                         />
+                <VerticalStackLayout Padding="5"
+                                     Spacing="10">
+                    <Label Text="{Binding Media.DisplayTitle}"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+                    <HorizontalStackLayout Spacing="15 ">
+                        <Label Text="{Binding Media.ReleaseDate}" 
+                               Style="{x:StaticResource sub}"/>
+                        <Label Text="{Binding Media.ReleaseDate}"
+                               Style="{x:StaticResource sub}"/>
+                    </HorizontalStackLayout>
+
+                    <Label Text="{Binding MovieDetail.budget, StringFormat='Presupuesto: {0:C0}'}" 
+                           FontSize="13" />
+                    <Label Text="{Binding AdultContent}" 
+                           FontSize="13" />
+                    <Label Text="{Binding MovieDetail.revenue, StringFormat='Ganancias: {0:C0}'}"
+                           FontSize="13" />
+                    <Label Text="Sinópsis:" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="{Binding Media.Overview}" 
+                            FontSize="13" />
+                    <Label Text="Elenco:" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="{Binding CastNames}" FontSize="14" TextColor="White" />
+
+                    <!-- Mostrar el equipo como una cadena de texto -->
+                    <Label Text="Equipo:" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="{Binding CrewNames}" FontSize="14" TextColor="White" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>

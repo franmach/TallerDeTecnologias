@@ -1,4 +1,4 @@
-﻿using ObligatorioTT.ViewModels;
+
 using ObligatorioTT.Pages;
 
 namespace ObligatorioTT.Pages;
@@ -6,6 +6,7 @@ namespace ObligatorioTT.Pages;
 public partial class MainPage : ContentPage
 {
     private readonly HomeViewModel _homeViewModel;
+    private readonly TmdbService _tmdbService;
 
     public MainPage(HomeViewModel homeViewModel)
     {
@@ -49,8 +50,9 @@ public partial class MainPage : ContentPage
         }
     }
 
-    //private async void OnSearchButtonClicked(object sender, EventArgs e)
-    //{
-    //    await Shell.Current.GoToAsync(nameof(SearchPage));
-    //}
+
+    private async void OnSearchButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SearchPage));
+    }
 }

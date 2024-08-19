@@ -18,6 +18,22 @@ public partial class Login : ContentPage
         _repository = repository;
         BindingContext = _repository;
 
+        // Configurar la interfaz según la plataforma
+        ConfigurarInterfazPorPlataforma();
+    }
+
+    private void ConfigurarInterfazPorPlataforma()
+    {
+        if (DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            // Ocultar el botón de huella en Windows
+            btnHuella.IsVisible = false;
+        }
+        else if (DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            // Mostrar el botón de huella en Android
+            btnHuella.IsVisible = true;
+        }
     }
 
     private async void btnInicioSesion_Clicked(object sender, EventArgs e)
@@ -44,17 +60,11 @@ public partial class Login : ContentPage
         }
     }
 
-
-
-
-
     private async void On_Tapped(object sender, EventArgs e)
     {
         Registrarme.TextColor = Colors.White; // Cambia el color al hacer tap
         await Shell.Current.GoToAsync($"//{nameof(CrearPerfil)}");
     }
-
-
 
     private async void btnHuella_Clicked(object sender, EventArgs e)
     {
@@ -62,9 +72,8 @@ public partial class Login : ContentPage
         {
             await DisplayAlert("Plataforma", "Esta plataforma no soporta el uso de huella dactilar", "Cerrar");
         }
-        else
+        else if (DeviceInfo.Platform == DevicePlatform.Android)
         {
-
             var request = new AuthenticationRequestConfiguration("demo", "probando huella");
 
             var result = await CrossFingerprint.Current.AuthenticateAsync(request);
@@ -72,6 +81,7 @@ public partial class Login : ContentPage
             if (result.Authenticated)
             {
                 await DisplayAlert("Autenticacion", "Acceso correcto", "Cerrar");
+                await Shell.Current.GoToAsync($"{nameof(Loading)}"); // Navega a la siguiente página
             }
             else
             {
@@ -80,3 +90,77 @@ public partial class Login : ContentPage
         }
     }
 }
+
+
+//public partial class Login : ContentPage
+//{
+//    private readonly Repository _repository;
+
+//    public Login(Repository repository)
+//    {
+//        InitializeComponent();
+//        _repository = repository;
+//        BindingContext = _repository;
+
+//    }
+
+//    private async void btnInicioSesion_Clicked(object sender, EventArgs e)
+//    {
+//        List<Usuario> usuarios = await App.ObligatorioRepo.GetAllUsuarios();
+//        bool usuarioEncontrado = false;
+
+//        foreach (var u in usuarios)
+//        {
+//            if (u.email == userEmail.Text)
+//            {
+//                Usuario logeado
+//                await Shell.Current.GoToAsync($"{nameof(Loading)}");
+//                usuarioEncontrado = true;
+//                break; // Salir del ciclo al encontrar un usuario válido
+//            }
+//        }
+
+//        if (!usuarioEncontrado)
+//        {
+//            await DisplayAlert("Error", "Usuario o contraseña invalidos", "Cerrar");
+//            Usuario no encontrado
+//           await Shell.Current.GoToAsync($"//{nameof(Login)}");
+//        }
+//    }
+
+
+
+
+
+//    private async void On_Tapped(object sender, EventArgs e)
+//    {
+//        Registrarme.TextColor = Colors.White; // Cambia el color al hacer tap
+//        await Shell.Current.GoToAsync($"//{nameof(CrearPerfil)}");
+//    }
+
+
+
+//    private async void btnHuella_Clicked(object sender, EventArgs e)
+//    {
+//        if (DeviceInfo.Platform == DevicePlatform.WinUI)
+//        {
+//            await DisplayAlert("Plataforma", "Esta plataforma no soporta el uso de huella dactilar", "Cerrar");
+//        }
+//        else
+//        {
+
+//            var request = new AuthenticationRequestConfiguration("demo", "probando huella");
+
+//            var result = await CrossFingerprint.Current.AuthenticateAsync(request);
+
+//            if (result.Authenticated)
+//            {
+//                await DisplayAlert("Autenticacion", "Acceso correcto", "Cerrar");
+//            }
+//            else
+//            {
+//                await DisplayAlert("Error en la autenticacion", "Acceso denegado", "Cerrar");
+//            }
+//        }
+//    }
+//}

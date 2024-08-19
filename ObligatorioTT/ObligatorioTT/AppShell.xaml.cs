@@ -9,6 +9,7 @@ namespace ObligatorioTT
             InitializeComponent();
             Routing.RegisterRoute(nameof(CategoriesPage), typeof(CategoriesPage));
             Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
+            Routing.RegisterRoute(nameof(FavoritesPage), typeof(FavoritesPage));
 
 
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));

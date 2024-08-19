@@ -135,11 +135,14 @@
                 <Grid Grid.Column ="2" 
                     RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource icongBg}"/>
-                    <Image Source="plus"
-                            Style ="{StaticResource iconImg}">
+                    <Image Source="plus.png" Style="{StaticResource iconImg}">
                         <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White"/>
                         </Image.Behaviors>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=AddToFavoritesCommand}" 
+                              CommandParameter="{Binding Media}"/>
+                        </Image.GestureRecognizers>
                     </Image>
                     <Label Grid.Row="1"
                             Text="Mi Lista"

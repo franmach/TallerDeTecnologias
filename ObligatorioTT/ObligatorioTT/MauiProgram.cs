@@ -33,14 +33,10 @@ namespace ObligatorioTT
             builder.Services.AddTransient<Profile>();
             builder.Services.AddSingleton<CategoriesPage>();
             builder.Services.AddSingleton<CategoriesViewModel>();
+            builder.Services.AddSingleton<FavoritesPage>();
+            builder.Services.AddSingleton<FavoritesViewModel>();
 
             builder.Services.AddTransientWithShellRoute<DetailsPage, DetailsViewModel>(nameof(DetailsPage));
-
-
-
-
-
-
 #endif
             builder.Services.AddHttpClient(TmdbService.TmdbHttpClientName,
                 httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));

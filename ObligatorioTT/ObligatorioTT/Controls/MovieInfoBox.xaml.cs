@@ -27,6 +27,15 @@ public partial class MovieInfoBox : ContentView
 	private void Button_Clicked(object sender, EventArgs e) =>
 		Closed?.Invoke(this,EventArgs.Empty);
 
+    // Asegúrate de que el BindingContext esté correctamente configurado
+    public DetailsViewModel ViewModel { get; set; }
+
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+        ViewModel = BindingContext as DetailsViewModel;
+    }
+
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
 		var parameters = new Dictionary<string, object>

@@ -36,8 +36,8 @@
         <ShellContent
              Title="Favorites"
              Icon="Resources/Images/fav.png"
-             ContentTemplate="{DataTemplate pages:CrearPerfil}"
-             Route="CrearPerfil">  
+             ContentTemplate="{DataTemplate pages:FavoritesPage}"
+             Route="FavoritesPage">  
         </ShellContent>
         
         <ShellContent

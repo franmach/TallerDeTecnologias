@@ -17,6 +17,7 @@ namespace ObligatorioTT.ViewModels
             _tmdbService = tmdbService;
         }
 
+        
         [ObservableProperty]
         private Media _media;
 
@@ -141,6 +142,16 @@ namespace ObligatorioTT.ViewModels
             VideoSource = string.Empty; // O cualquier URL de una página en blanco
         }
 
+        public ObservableCollection<Media> FavoriteMovies { get; set; } = new();
+        [RelayCommand]
+        private void AddToFavorites(Media media)
+        {
+            if (media != null && !FavoriteMovies.Contains(media))
+            {
+                FavoriteMovies.Add(media);
+                // Aquí puedes implementar la persistencia en la base de datos o almacenamiento local si es necesario.
+            }
+        }
 
     }
 }

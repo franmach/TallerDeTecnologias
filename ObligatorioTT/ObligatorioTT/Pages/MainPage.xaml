@@ -96,49 +96,21 @@
                     <HorizontalStackLayout VerticalOptions="End"
                    HorizontalOptions="Center"
                                        Spacing="70">
-                        <VerticalStackLayout>
-                            <Label Text="+"
-                               HorizontalOptions="Center"
-                               FontAttributes="Bold"
-                               FontSize="22"
-                               TextColor="White">
-                            </Label>
-                            <Label Text="MI LISTA"
-                                HorizontalTextAlignment="Center"
-                                FontAttributes="Bold"
-                                FontSize="16"
-                                TextColor="White">
-                            </Label>
-                        </VerticalStackLayout>
-
-                        <Border StrokeShape="RoundRectangle 5"
-                                BackgroundColor="White"
-                                Padding="20,5">
-                            <HorizontalStackLayout Spacing="5"
-                                           VerticalOptions="Center">
-                                <Image Source="play"
-                               Aspect="AspectFit"
-                               Style="{StaticResource IconStyle}">
-                                </Image>
-                                <Label Text="TRAILER"
-                               TextColor="Black"
-                               FontAttributes="Bold"
-                               FontSize="16"></Label>
-                            </HorizontalStackLayout>
-                        </Border>
-
+                        
                         <VerticalStackLayout>
                             <Grid HorizontalOptions="Center">
                                 <Image Margin="2"
                                    Style="{StaticResource IconStyle}"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center"
-                                   Source="info">
+                                   Source="info.png">
                                 </Image>
                             </Grid>
                             <Label Text="INFO"
                                TextColor="White"
                                FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                VerticalOptions="Center"
                                FontSize="16"></Label>
                             <VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectMediaCommand}"

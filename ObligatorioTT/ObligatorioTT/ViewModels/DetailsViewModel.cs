@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ObligatorioTT.Models;
+using ObligatorioTT.Pages;
 using ObligatorioTT.Services;
 using System.Collections.ObjectModel;
 
@@ -21,7 +23,14 @@ namespace ObligatorioTT.ViewModels
         [ObservableProperty]
         private string _mainTrailerUrl;
 
-        public ObservableCollection<Video> Videos { get; set; } = new();
+        [ObservableProperty]
+        private Media _selectedMedia;
+
+        public ObservableCollection<Video> VideosCol { get; set; } = new();
+        public ObservableCollection<Media> similarMedia { get; set; } = new();
+
+        [ObservableProperty]
+        private int _similarItemWidth = 125;
 
         [ObservableProperty]
         private bool _isBusy;
@@ -31,6 +40,12 @@ namespace ObligatorioTT.ViewModels
 
         [ObservableProperty]
         private string _crewNames;
+
+        [ObservableProperty]
+        private string _videoSource;
+
+        [ObservableProperty]
+        private bool _isPlaying;
 
         // Propiedad para MovieDetail
         [ObservableProperty]
@@ -43,10 +58,12 @@ namespace ObligatorioTT.ViewModels
 
         public async Task InitializeAsync()
         {
+            var similarMediasTask = _tmdbService.GetSimilarAsync(Media.Id, Media.MediaType);
             IsBusy = true;
             try
             {
                 var trailerTeasers = await _tmdbService.GetTrailersAsync(Media.Id, Media.MediaType);
+                
                 if (trailerTeasers?.Any() == true)
                 {
                     var trailer = trailerTeasers.FirstOrDefault(t => t.type == "Trailer");
@@ -55,6 +72,11 @@ namespace ObligatorioTT.ViewModels
                         trailer = trailerTeasers.First();
                     }
                     MainTrailerUrl = GenerateYoutubeUrl(trailer.key);
+
+                    foreach(var video in trailerTeasers)
+                    {
+                        VideosCol.Add(video);
+                    }
                 }
                 else
                 {
@@ -83,9 +105,42 @@ namespace ObligatorioTT.ViewModels
             {
                 IsBusy = false;
             }
+
+            var similarMedias = await similarMediasTask;
+            if(similarMedias?.Any() == true)
+            {
+                foreach(var media in similarMedias)
+                {
+                    similarMedia.Add(media);
+                }
+            }
+        }
+        [RelayCommand]
+        
+        private async Task ChangeToThisMedia(Media media)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(DetailsViewModel.Media)] = media
+            };
+            await Shell.Current.GoToAsync(nameof(DetailsPage), true, parameters);
         }
         private static string GenerateYoutubeUrl(string videoKey) =>
             $"https://www.youtube.com/embed/{videoKey}";
+
+        [RelayCommand]
+        private void PlayVideo(string videoKey)
+        {
+            VideoSource = $"https://www.youtube.com/embed/{videoKey}";
+            IsPlaying = true;
+        }
+        [RelayCommand]
+        private void StopVideo()
+        {
+            IsPlaying = false;
+            VideoSource = string.Empty; // O cualquier URL de una página en blanco
+        }
+
 
     }
 }

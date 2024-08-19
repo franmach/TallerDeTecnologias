@@ -12,12 +12,12 @@
 
     <TabBar>
         <ShellContent
-            Title="Buscar"
-            Icon="Resources/Images/lupa.png"
-            ContentTemplate="{DataTemplate pages:Profile}"
-            Route="Profile">
-        </ShellContent>
-        <ShellContent
+             Title="Buscar"
+             Icon="Resources/Images/lupa.png"
+            ContentTemplate="{DataTemplate pages:SearchPage}"
+            Route="SearchPage">
+            </ShellContent>
+            <ShellContent
              Title="Loading"
              Icon="Resources/Images/fire.png"
              ContentTemplate="{DataTemplate pages:Loading}"

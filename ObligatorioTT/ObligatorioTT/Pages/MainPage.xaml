@@ -122,11 +122,38 @@
                                     MediaSelected="MovieRow_MediaSelected"/>
             </VerticalStackLayout>
         </ScrollView>
+        <Grid HeightRequest="35"
+              VerticalOptions="Start">
+            <FlexLayout JustifyContent="SpaceBetween">
+                <Image Source="logon"
+                       
+                       Aspect="AspectFit"
+                       VerticalOptions="Start"
+                       HeightRequest="30"
+                       WidthRequest="30"></Image>
+            <HorizontalStackLayout>
+                <ImageButton Source="search"
+                             Aspect="AspectFill"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             Clicked="SearchButton_Clicked">
+
+                </ImageButton>
+                    <ImageButton Source="userW"   
+                       Aspect="AspectFill"
+                       HeightRequest="30"
+                       WidthRequest="30">
+
+                    </ImageButton>
+                </HorizontalStackLayout>
+            </FlexLayout>
+        </Grid>
         <controls:MovieInfoBox  Media="{Binding SelectedMedia}"
                                 VerticalOptions="End"
                                 IsVisible="{Binding ShowMovieInfoBox}"
                                 Closed="MovieInfoBox_Closed"
                                 />
+        
     </Grid>
 
 

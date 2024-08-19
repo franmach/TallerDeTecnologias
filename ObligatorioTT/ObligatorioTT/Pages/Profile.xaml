@@ -2,20 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.Profile"
-             Title="Profile">
+             Title="Perfil">
     <VerticalStackLayout 
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Padding="25"
             Spacing="25">
+
+        <Border HeightRequest="160" 
+        WidthRequest="160"
+        StrokeShape="RoundRectangle 80,80,80,80"
+        HorizontalOptions="Center"
+        StrokeThickness="8"
+        Margin="0,0,0,0">
+            <Image
+        Aspect="AspectFill"
+        Source="{Binding rutaFoto}"  
+                HeightRequest="160"
+        WidthRequest="160"
+        VerticalOptions="Center"
+        HorizontalOptions="Center" />
+        </Border>
+
         <Label 
-            Text="Profile"
+            Text="{Binding email}"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            />
+        <Label 
+            Text="{Binding nombre}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            />
+
         <Button
             Text="Logout"
-            Clicked="Button_Clicked">
-
-        </Button>
+            Clicked="Button_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

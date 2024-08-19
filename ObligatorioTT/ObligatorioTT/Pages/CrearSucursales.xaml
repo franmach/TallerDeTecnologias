@@ -13,7 +13,7 @@
         
         <!-- Campo de entrada para la direccion -->
         <Entry x:Name="Direccion"
-        Placeholder="Número, Ciudad, Departamento, País" 
+        Placeholder="Número, Calle, Ciudad, Departamento, País" 
         Grid.Row="1" />
         
         <!-- Campo de entrada para el teléfono -->

@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ObligatorioTT.Services
 {
@@ -39,11 +41,46 @@ namespace ObligatorioTT.Services
 
         public async Task<IEnumerable<Media>> GetActionAsync() =>
             await GetMediasAsync(TmdbUrls.Action);
+
+        public async Task<IEnumerable<Video>?> GetTrailersAsync(int id, string type = "movie")
+        {
+            var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>
+                ($"{TmdbUrls.GetTrailers(id, type)}&api_key={ApiKey}");
+
+            if(videosWrapper?.results.Length > 0)
+            {
+                var trailerTeasers = videosWrapper.results.Where(VideosWrapper.FilterTrailerTeasers);
+                return trailerTeasers;
+            }
+            return null;
+        }
         private async Task<IEnumerable<Media>> GetMediasAsync(string url)
         {
             var trendingMoviesCollections = await HttpClient.GetFromJsonAsync<Movie>($"{url}&api_key={ApiKey}");
             return trendingMoviesCollections.results.Select(r => r.ToMediaObject());
         }
+
+        public async Task<MovieDetail> GetMovieDetailAsync(int movieId)
+        {
+            return await HttpClient.GetFromJsonAsync<MovieDetail>($"{TmdbUrls.GetMovieDetails(movieId)}&api_key={ApiKey}");
+        }
+        public async Task<Credits> GetMovieCreditsAsync(int movieId)
+        {
+            string url = $"https://api.themoviedb.org/3/movie/{movieId}/credits?api_key={ApiKey}";
+
+            var response = await HttpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<Credits>();
+            }
+            else
+            {
+                // Manejo del error si la solicitud no fue exitosa
+                return null;
+            }
+        }
+        
     }
 
     public static class TmdbUrls
@@ -59,6 +96,8 @@ namespace ObligatorioTT.Services
         public static string GetSimilar(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/similar?language=es-sp";
 
     }
+
+    
     public class Movie
     {
         public int page { get; set; }
@@ -171,5 +210,26 @@ namespace ObligatorioTT.Services
         public IEnumerable<Genre> Genres { get; set; }
     }
     public record struct Genre(int Id, string Name);
+
+    public class Credits
+    {
+        public int Id { get; set; }
+        public List<CastMember> Cast { get; set; }
+        public List<CrewMember> Crew { get; set; }
+    }
+
+    public class CastMember
+    {
+        public string Name { get; set; }
+        public string Character { get; set; }
+        public string ProfilePath { get; set; }
+    }
+
+    public class CrewMember
+    {
+        public string Name { get; set; }
+        public string Job { get; set; }
+        public string Department { get; set; }
+    }
 
 }

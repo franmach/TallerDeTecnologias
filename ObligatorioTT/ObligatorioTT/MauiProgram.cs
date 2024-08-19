@@ -32,6 +32,10 @@ namespace ObligatorioTT
             builder.Services.AddSingleton<CategoriesPage>();
             builder.Services.AddSingleton<CategoriesViewModel>();
 
+            builder.Services.AddTransientWithShellRoute<DetailsPage, DetailsViewModel>(nameof(DetailsPage));
+
+
+
 
 
 

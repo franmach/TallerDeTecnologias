@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using ObligatorioTT.Pages;
 using ObligatorioTT.Services;
 using ObligatorioTT.ViewModels;
+using CommunityToolkit.Maui;
 
 namespace ObligatorioTT
 {
@@ -14,8 +15,9 @@ namespace ObligatorioTT
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                ////MAPAAAAS
-                //.UseMauiMaps()
+                .UseMauiCommunityToolkitMediaElement()
+                .UseMauiMaps()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -48,6 +50,9 @@ namespace ObligatorioTT
             builder.Services.AddSingleton<MainPage>();//Usamos el patron Singleton para garantizar que solamente haya una instancia de TMDBService en toda la vida de la app, cada vez que se llame se devuelve la misma instnacia
             builder.Services.AddSingleton<HomeViewModel>();
 
+
+            builder.Services.AddSingleton<SearchPage>();
+            builder.Services.AddSingleton<SearchViewModel>();
             // Añadir Repository como singleton
             string rutaDB = FileAccessHelper.GetLocalFilePath("usuariosdb.db3");
             builder.Services.AddSingleton<Repository>(s => ActivatorUtilities.CreateInstance<Repository>(s, rutaDB));

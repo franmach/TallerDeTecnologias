@@ -58,12 +58,13 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Margin="0" Padding="0">
+    <Grid Margin="5" Padding="5">
         <ScrollView BackgroundColor="black">
             <VerticalStackLayout>
-                <Grid HeightRequest="500">
+                <Grid HeightRequest="550">
                     <Image Aspect="Center"
-                           HeightRequest="350"
+                           Margin="50"
+                           HeightRequest="365"
                            Style="{StaticResource ImageStyle}"
                            VerticalOptions="Start"
                            Opacity="0.8">
@@ -76,23 +77,6 @@
                         </Image.GestureRecognizers>
                     </Image>
                     
-                    <Grid VerticalOptions="Start"
-                      HeightRequest="35"
-                      Margin="0, 35, 0, 0">
-                        <FlexLayout JustifyContent="SpaceAround"
-                                    VerticalOptions="Center">
-                            <Label Text="Series"
-                                   Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Peliculas"
-                                   Style="{StaticResource MenuLabel}"/>
-                            <Label Text="Categorias"
-                                   Style="{StaticResource MenuLabel}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="CategoriesMenu_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </FlexLayout>
-                    </Grid>
                     <HorizontalStackLayout VerticalOptions="End"
                    HorizontalOptions="Center"
                                        Spacing="70">
@@ -109,9 +93,9 @@
                             <Label Text="INFO"
                                TextColor="White"
                                FontAttributes="Bold"
-                                   HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                               FontSize="16"></Label>
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="20"></Label>
                             <VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectMediaCommand}"
                               CommandParameter="{Binding TrendingMovie}"/>

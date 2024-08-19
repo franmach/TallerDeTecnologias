@@ -93,7 +93,7 @@
                                      Color="Red"
                                      x:Name="trailersTabIndicator"/>
 
-                            <Label Text="Trailers &amp; More"
+                            <Label Text="Trailers y más"
                                    Style="{x:StaticResource tabtitle}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TrailersTab_Tapped"/>
@@ -107,7 +107,7 @@
                                      Color="Black"
                                      x:Name="similarTabIndicator"/>
 
-                            <Label Text="More Like This"
+                            <Label Text="Sugerencias"
                                    Style="{x:StaticResource tabtitle}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="SimilarTab_Tapped"/>

@@ -29,18 +29,23 @@ public partial class Sucursales : ContentPage
     private void SuscribirEventos()
     {
         // Suscripción para agregar un nuevo pin cuando se agrega una sucursal
-        MessagingCenter.Subscribe<SucursalesViewModel, Location>(this, "SucursalAgregada", (sender, posicion) =>
+        MessagingCenter.Subscribe<SucursalesViewModel, SucursalPinData>(this, "SucursalAgregada", (sender, sucursalPinData) =>
         {
-            var nuevoPin = new Pin
+            if (sucursalPinData != null && sucursalPinData.Posicion != null)
             {
-                Label = "Sucursal",
-                Location = new Location(posicion.Latitude, posicion.Longitude),
-                Address = "Dirección ingresada"
-            };
+                var nuevoPin = new Pin
+                {
+                    Label = sucursalPinData.Sucursal.nombre, // Mostrar el nombre de la sucursal
+                    Location = new Location(sucursalPinData.Posicion.Latitude, sucursalPinData.Posicion.Longitude),
+                    Address = ObtenerCalleYNumero(sucursalPinData.Sucursal.direccion) // Mostrar solo la calle y el número
+                };
 
-            SucursalesMap.Pins.Add(nuevoPin);
-            nuevoPin.MarkerClicked += (s, args) => OnPinClicked(nuevoPin);
+                SucursalesMap.Pins.Add(nuevoPin);
+                nuevoPin.MarkerClicked += (s, args) => OnPinClicked(nuevoPin);
+            }
         });
+
+
 
         // Suscripción para eliminar el pin cuando se elimina una sucursal
         MessagingCenter.Subscribe<SucursalesViewModel, Location>(this, "SucursalEliminada", (sender, posicion) =>
@@ -84,72 +89,22 @@ public partial class Sucursales : ContentPage
 
         SucursalesMap.MoveToRegion(MapSpan.FromCenterAndRadius(ubicacion, Distance.FromKilometers(2)));
     }
+
+    private string ObtenerCalleYNumero(string direccionCompleta)
+    {
+        var partesDireccion = direccionCompleta.Split(',');
+
+        if (partesDireccion.Length >= 2)
+        {
+            // Combinar el número y la calle, que son las dos primeras partes de la dirección
+            string numeroYCalle = $"{partesDireccion[0].Trim()} {partesDireccion[1].Trim()}";
+            return numeroYCalle;
+        }
+
+        return direccionCompleta;
+    }
+
+
 }
 
 
-
-
-//using Microsoft.Maui.Controls.Maps;
-//using Microsoft.Maui.Maps;
-//using ObligatorioTT.Models;
-//using ObligatorioTT.ViewModels;
-
-//namespace ObligatorioTT.Pages;
-
-//public partial class Sucursales : ContentPage
-//{
-//    private readonly SucursalesViewModel _viewModel;
-
-//    public Sucursales(SucursalesViewModel viewModel)
-//    {
-//        InitializeComponent();
-//        _viewModel = viewModel;
-//        BindingContext = _viewModel;
-
-//        MessagingCenter.Subscribe<CrearSucursales, Location>(this, "NuevaSucursalAgregada", (sender, posicion) =>
-//        {
-//            var nuevoPin = new Pin
-//            {
-//                Label = "Nueva Sucursal",
-//                Location = new Location(posicion.Latitude, posicion.Longitude),
-//                Address = "Dirección ingresada"
-//            };
-
-//            SucursalesMap.Pins.Add(nuevoPin);
-//        });
-
-//        MessagingCenter.Subscribe<CrearSucursales>(this, "SucursalAgregada", (sender) =>
-//        {
-//            _viewModel.LoadSucursalesCommand.Execute(null);
-//        });
-
-//        MessagingCenter.Subscribe<SucursalesViewModel, Location>(this, "SucursalEliminada", (sender, posicion) =>
-//        {
-//            var pinToRemove = SucursalesMap.Pins.FirstOrDefault(pin =>
-//                pin.Location.Latitude == posicion.Latitude && pin.Location.Longitude == posicion.Longitude);
-
-//            if (pinToRemove != null)
-//            {
-//                SucursalesMap.Pins.Remove(pinToRemove);
-//                Console.WriteLine($"Pin eliminado en la ubicación: {posicion.Latitude}, {posicion.Longitude}");
-//            }
-//            else
-//            {
-//                Console.WriteLine($"No se encontró pin para eliminar en la ubicación: {posicion.Latitude}, {posicion.Longitude}");
-//            }
-//        });
-//    }
-
-//    protected override async void OnAppearing()
-//    {
-//        base.OnAppearing();
-//        _viewModel.LoadSucursalesCommand.Execute(null);
-
-//        var geolocalizacion = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(1));
-//        var ubicacion = await Geolocation.GetLocationAsync(geolocalizacion);
-
-//        SucursalesMap.MoveToRegion(MapSpan.FromCenterAndRadius(ubicacion, Distance.FromKilometers(2)));
-//    }
-
-
-//}

@@ -45,7 +45,13 @@ namespace ObligatorioTT.ViewModels
                     var posicion = await new GeocodingService("AIzaSyB6mykcb3pshOlbdIaUpYtOmLK-fdkXsW0").GetCoordinatesFromAddressAsync(sucursal.direccion);
                     if (posicion != null)
                     {
-                        MessagingCenter.Send(this, "SucursalAgregada", posicion);
+                        // Crear una instancia de SucursalPinData y enviar el mensaje
+                        var sucursalPinData = new SucursalPinData
+                        {
+                            Sucursal = sucursal,
+                            Posicion = posicion
+                        };
+                        MessagingCenter.Send(this, "SucursalAgregada", sucursalPinData);
                     }
                 }
             }

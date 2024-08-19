@@ -42,6 +42,12 @@ namespace ObligatorioTT.Pages;
 
 
     }
+
+    private async void btnNuevoPerfil_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CrearPerfil());
+
+    }
 }
 
 

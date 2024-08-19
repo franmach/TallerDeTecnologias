@@ -4,7 +4,6 @@
              x:Class="ObligatorioTT.Pages.CrearPerfil"
              Title="Crear Perfil"
              BackgroundColor="#cac0f2"
-             Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              >
 

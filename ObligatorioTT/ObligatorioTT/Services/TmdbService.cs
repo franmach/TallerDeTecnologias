@@ -51,7 +51,7 @@ namespace ObligatorioTT.Services
             var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>
                 ($"{TmdbUrls.GetTrailers(id, type)}&api_key={ApiKey}");
 
-            if(videosWrapper?.results.Length > 0)
+            if (videosWrapper?.results.Length > 0)
             {
                 var trailerTeasers = videosWrapper.results.Where(VideosWrapper.FilterTrailerTeasers);
                 return trailerTeasers;
@@ -108,7 +108,7 @@ namespace ObligatorioTT.Services
 
     }
 
-    
+
     public class Movie
     {
         public int page { get; set; }
@@ -242,5 +242,6 @@ namespace ObligatorioTT.Services
         public string Job { get; set; }
         public string Department { get; set; }
     }
+}
 
 

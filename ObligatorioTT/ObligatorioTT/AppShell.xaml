@@ -18,44 +18,26 @@
             ContentTemplate="{DataTemplate pages:SearchPage}"
             Route="SearchPage">
             </ShellContent>
-            <ShellContent
-             Title="Loading"
-             Icon="Resources/Images/fire.png"
-             ContentTemplate="{DataTemplate pages:Loading}"
-             Route="Loading"
-            Shell.TabBarIsVisible="False">
-        </ShellContent>
+        
+        
 
         <ShellContent
-             Title="Home"
-             Icon="Resources/Images/home.png"
-             ContentTemplate="{DataTemplate pages:MainPage}"
-             Route="MainPage">  
+       Title="Home"
+       Icon="Resources/Images/home.png"
+       ContentTemplate="{DataTemplate pages:MainPage}"
+       Route="MainPage">
         </ShellContent>
-        
-        
-        <ShellContent
-             Title="Favorites"
-             Icon="Resources/Images/fav.png"
-             ContentTemplate="{DataTemplate pages:CrearPerfil}"
-             Route="CrearPerfil">  
-        </ShellContent>
-        
-        <ShellContent
-             Title="Profile"
-             Icon="Resources/Images/user.png"
-             ContentTemplate="{DataTemplate pages:Profile}"
-             Route="Profile">
-        </ShellContent>
+
 
         <ShellContent
              Title="Sucursales"
-             Icon="loaction"
+             Icon="location"
              ContentTemplate="{DataTemplate pages:Sucursales}"
              Route="Sucursales">
         </ShellContent>
 
     </TabBar>
-   
+
+    <ShellContent Route="Login" ContentTemplate="{DataTemplate pages:Login}" />
 
 </Shell>

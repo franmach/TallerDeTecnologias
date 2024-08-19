@@ -73,11 +73,11 @@ public partial class Login : ContentPage
     {
         if (DeviceInfo.Platform == DevicePlatform.WinUI)
         {
-            await DisplayAlert("Plataforma", "Esta plataforma no soporta el uso de huella dactilar", "Cerrar");
+            await DisplayAlert("", "Esta plataforma no soporta el uso de huella dactilar", "Cerrar");
         }
         else if (DeviceInfo.Platform == DevicePlatform.Android)
         {
-            var request = new AuthenticationRequestConfiguration("demo", "probando huella");
+            var request = new AuthenticationRequestConfiguration("Hyella", "huella dactilar");
 
             var result = await CrossFingerprint.Current.AuthenticateAsync(request);
 

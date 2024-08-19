@@ -33,6 +33,18 @@ namespace ObligatorioTT.Pages
                     await DisplayAlert("", "Por favor, complete todos los campos obligatorios.","Cerrar");
                     return;
                 }
+                List<Usuario> usuarios = await App.ObligatorioRepo.GetAllUsuarios();
+
+                foreach (var u in usuarios)
+                {
+                    if (u.email == Email.Text)
+                    {
+                        // Usuario encontrad0
+                        await DisplayAlert("", "Este mail ya esta en uso", "Cerrar");
+                        return;
+                    }
+                }
+
 
                 Usuario nuevoUsuario = new()
                 {
@@ -46,7 +58,8 @@ namespace ObligatorioTT.Pages
                 await _repository.AddNewUsuarioAsync(nuevoUsuario);
                await DisplayAlert("", "Usuario agregado correctamente", "Cerrar");
 
-                Nombre.Text = Telefono.Text = Email.Text = Password.Text = Foto.Text =  string.Empty;
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text  =  string.Empty;
+                await Shell.Current.GoToAsync(nameof(Profile));
 
             }
             catch (Exception ex)

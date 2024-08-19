@@ -5,7 +5,6 @@
              xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
              xmlns:models="clr-namespace:ObligatorioTT.Models"
              x:DataType="vm:SearchViewModel"
-             Title="Buscar Películas"
              BackgroundColor="Black">
 
     <ContentPage.Content>

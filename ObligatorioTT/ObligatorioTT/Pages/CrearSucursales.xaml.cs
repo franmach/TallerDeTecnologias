@@ -29,7 +29,7 @@ public partial class CrearSucursales : ContentPage
 
             if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(direccion))
             {
-                statusMessage.Text = "Por favor, complete todos los campos obligatorios.";
+                DisplayAlert("","Por favor, complete todos los campos obligatorios.","Cerrar");
                 return;
             }
 
@@ -61,7 +61,7 @@ public partial class CrearSucursales : ContentPage
 
             await DisplayAlert("Éxito", "Sucursal agregada correctamente", "OK");
 
-            statusMessage.Text = "Sucursal agregada correctamente";
+            DisplayAlert("", "Sucursal agregada correctamente","Cerrar");
             Nombre.Text = Direccion.Text = Telefono.Text = string.Empty;
         }
         catch (Exception ex)

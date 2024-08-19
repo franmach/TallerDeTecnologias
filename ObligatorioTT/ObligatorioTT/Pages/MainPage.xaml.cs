@@ -26,12 +26,6 @@ public partial class MainPage : ContentPage
         _homeViewModel.SelectMediaCommand.Execute(null);
     }
 
-    //evento del menu de categorias
-    private async void CategoriesMenu_Tapped(object sender, TappedEventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(CategoriesPage));
-    }
-
     protected async override void OnAppearing()
     {
         base.OnAppearing();
@@ -48,11 +42,5 @@ public partial class MainPage : ContentPage
         {
             await label.ScaleTo(1, 250);
         }
-    }
-
-
-    private async void OnSearchButtonClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(SearchPage));
     }
 }

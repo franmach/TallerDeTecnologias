@@ -98,9 +98,9 @@
 
             </Grid>
 
-            <Grid ColumnDefinitions="*, *, *"
+            <Grid ColumnDefinitions="*, *, *, *, *"
                   Margin=" 0, 20, 0, 5">
-                <Grid Grid.Column ="0" 
+                <Grid Grid.Column ="1" 
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource icongBg}"/>
                     <Image Source="play.png"
@@ -112,27 +112,13 @@
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Image.GestureRecognizers>
                     </Image>
-                    
-                    <Label Grid.Row="1"
+
+                    <Label Grid.Row="2"
                            Text="Ver Trailer"
                            Style="{StaticResource iconBtnText}" />
                 </Grid>
 
-                <Grid Grid.Column ="1" 
-                    RowDefinitions="Auto, Auto">
-                    <Ellipse Style="{StaticResource icongBg}"/>
-                    <Image Source="download.png"
-                            Style ="{StaticResource iconImg}">
-                        <Image.Behaviors>
-                            <toolkit:IconTintColorBehavior TintColor="White"/>
-                        </Image.Behaviors>
-                    </Image>
-                    <Label Grid.Row="1"
-                            Text="Download"
-                            Style="{StaticResource iconBtnText}" />
-                </Grid>
-
-                <Grid Grid.Column ="2" 
+                <Grid Grid.Column ="3" 
                     RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource icongBg}"/>
                     <Image Source="plus"
@@ -141,7 +127,7 @@
                             <toolkit:IconTintColorBehavior TintColor="White"/>
                         </Image.Behaviors>
                     </Image>
-                    <Label Grid.Row="1"
+                    <Label Grid.Row="2"
                             Text="Mi Lista"
                             Style="{StaticResource iconBtnText}" />
                 </Grid>

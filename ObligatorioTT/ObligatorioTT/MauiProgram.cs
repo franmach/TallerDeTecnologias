@@ -16,8 +16,8 @@ namespace ObligatorioTT
                 .UseMauiApp<App>()
                 //.UseMauiCommunityToolkit()
                 .UseMauiCommunityToolkitMediaElement()
-                ////MAPAAAAS
-                //.UseMauiMaps()
+                .UseMauiMaps()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

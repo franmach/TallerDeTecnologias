@@ -46,7 +46,14 @@
              ContentTemplate="{DataTemplate pages:Login}"
              Route="Login">
         </ShellContent>
-       
+
+        <ShellContent
+             Title="Sucursales"
+             Icon="sucursal"
+             ContentTemplate="{DataTemplate pages:Sucursales}"
+             Route="Sucursales">
+        </ShellContent>
+
     </TabBar>
    
 

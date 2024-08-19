@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.Sucursales"
+             Title="Sucursales">
+    <StackLayout Padding="10">
+        <Button Text="Agregar Nueva Sucursal"
+                Command="{Binding NavigateToCrearSucursalCommand}"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"/>
+
+        <!-- Botón para mostrar/ocultar la lista de sucursales -->
+        <Button Text="Mostrar/Ocultar Sucursales"
+                Command="{Binding ToggleSucursalesVisibilityCommand}"
+                HorizontalOptions="Center"
+                Margin="0,10,0,0"/>
+
+        <Label Text="Lista de Sucursales" 
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <CollectionView x:Name="SucursalesCollectionView"
+                        ItemsSource="{Binding Sucursales}"
+                        IsVisible="{Binding IsSucursalesVisible}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding nombre}" 
+                               FontSize="Medium" />
+                         <Label Text="{Binding direccion, StringFormat='Dirección: {0}'}" 
+                               FontSize="Small" 
+                               TextColor="Gray" />
+                        <Label Text="{Binding telefono, StringFormat='Teléfono: {0}'}" 
+                               FontSize="Small" 
+                               TextColor="Gray" />
+                        <!-- Botón para eliminar la sucursal -->
+                        <Button Text="Eliminar"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteSucursalCommand}"
+                                CommandParameter="{Binding .}"
+                                HorizontalOptions="Center"
+                                Margin="0,20,0,0"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.Sucursales"
+             Title="Sucursales">
+    <StackLayout Padding="10">
+        <Button Text="Agregar Nueva Sucursal"
+                Command="{Binding NavigateToCrearSucursalCommand}"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"/>
+
+        <Label Text="Lista de Sucursales" 
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <CollectionView x:Name="SucursalesCollectionView"
+                        ItemsSource="{Binding Sucursales}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding nombre}" 
+                               FontSize="Medium" />
+                        <Label Text="{Binding direccion}" 
+                               FontSize="Small" 
+                               TextColor="Gray" />
+                        <Label Text="{Binding telefono}" 
+                               FontSize="Small" 
+                               TextColor="Gray" />
+                        --><!-- Botón para eliminar la sucursal --><!--
+                        <Button Text="Eliminar"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteSucursalCommand}"
+                                CommandParameter="{Binding .}"
+                                HorizontalOptions="Center"
+                                Margin="0,20,0,0"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>-->

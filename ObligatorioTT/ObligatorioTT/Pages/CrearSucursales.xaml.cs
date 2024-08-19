@@ -50,8 +50,9 @@ public partial class CrearSucursales : ContentPage
         }
     }
 
-    private void btnVerSucursales_Clicked(object sender, EventArgs e)
+    private async void btnVerSucursales_Clicked(object sender, EventArgs e)
     {
+        await Shell.Current.GoToAsync("///Sucursales");
 
     }
 }

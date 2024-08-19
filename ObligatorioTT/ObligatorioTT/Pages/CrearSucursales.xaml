@@ -25,11 +25,21 @@
         <Button Text="Agregar Sucursal"
          x:Name="btnAgregarSucursal"
          Grid.Row="3"
-         Clicked="btnAgregarSucursal_Clicked" />
+         Clicked="btnAgregarSucursal_Clicked"
+         HorizontalOptions="Center"
+         Margin="0,20,0,0"/>
 
         <!-- Mensaje de estado -->
         <Label x:Name="statusMessage"
         TextColor="White"
         Grid.Row="4" />
+        
+        <Button Text="Ver Sucursales"
+        x:Name="btnVerSucursales"
+        Grid.Row="5"
+        HorizontalOptions="Center"
+        Margin="0,20,0,0"
+        Clicked="btnVerSucursales_Clicked" />
+
     </Grid>
 </ContentPage>

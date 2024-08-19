@@ -11,12 +11,8 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         _homeViewModel = homeViewModel;
         BindingContext = _homeViewModel;
-    }
 
-    protected async override void OnAppearing()
-    {
-        base.OnAppearing();
-        await _homeViewModel.InitializeAsync();
+       
     }
 
     //evento para controlar la seleccion de peliculas en la mainpage
@@ -36,9 +32,11 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync(nameof(CategoriesPage));
     }
 
-
- 
-
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+        await _homeViewModel.InitializeAsync();
+    }
     private async Task AnimateLabel(Label label, bool isSelected)
     {
         if (isSelected)
@@ -51,9 +49,4 @@ public partial class MainPage : ContentPage
             await label.ScaleTo(1, 250);
         }
     }
-
-
-
-
-
 }

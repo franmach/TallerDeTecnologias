@@ -6,6 +6,7 @@ using Plugin.Fingerprint.Abstractions;
 using Plugin.Fingerprint;
 using Microsoft.Maui.Controls;
 using System.Runtime.Intrinsics.X86;
+using System.ComponentModel;
 namespace ObligatorioTT.Pages;
 
 public partial class Login : ContentPage
@@ -43,18 +44,20 @@ public partial class Login : ContentPage
 
         foreach (var u in usuarios)
         {
-            if (u.email == userEmail.Text)
+            if (u.email == email.Text && u.password == password.Text)
             {
                 // Usuario logeado
                 await Shell.Current.GoToAsync($"{nameof(Loading)}");
                 usuarioEncontrado = true;
+                App.UsuarioLogueado = u;
+
                 break; // Salir del ciclo al encontrar un usuario válido
             }
         }
 
         if (!usuarioEncontrado)
         {
-            await DisplayAlert("Error", "Usuario o contraseña invalidos", "Cerrar");
+            await DisplayAlert("Error", "Usuario y/o contraseña invalidos", "Cerrar");
             // Usuario no encontrado
             await Shell.Current.GoToAsync($"//{nameof(Login)}");
         }

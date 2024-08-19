@@ -66,7 +66,7 @@ public partial class Login : ContentPage
     private async void On_Tapped(object sender, EventArgs e)
     {
         Registrarme.TextColor = Colors.White; // Cambia el color al hacer tap
-        await Shell.Current.GoToAsync($"//{nameof(CrearPerfil)}");
+        await Navigation.PushAsync(new CrearPerfil());
     }
 
     private async void btnHuella_Clicked(object sender, EventArgs e)
@@ -77,7 +77,7 @@ public partial class Login : ContentPage
         }
         else if (DeviceInfo.Platform == DevicePlatform.Android)
         {
-            var request = new AuthenticationRequestConfiguration("Hyella", "huella dactilar");
+            var request = new AuthenticationRequestConfiguration("Huella", "huella dactilar");
 
             var result = await CrossFingerprint.Current.AuthenticateAsync(request);
 

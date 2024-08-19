@@ -59,7 +59,7 @@ namespace ObligatorioTT.Pages
                await DisplayAlert("", "Usuario agregado correctamente", "Cerrar");
 
                 Nombre.Text = Telefono.Text = Email.Text = Password.Text  =  string.Empty;
-                await Shell.Current.GoToAsync(nameof(Profile));
+                await Shell.Current.GoToAsync("//Login"); // Asegúrate de que la ruta esté correcta
 
             }
             catch (Exception ex)

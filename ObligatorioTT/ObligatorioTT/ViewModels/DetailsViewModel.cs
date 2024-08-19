@@ -25,7 +25,6 @@ namespace ObligatorioTT.ViewModels
 
         [ObservableProperty]
         private Media _selectedMedia;
-
         public ObservableCollection<Video> VideosCol { get; set; } = new();
         public ObservableCollection<Media> similarMedia { get; set; } = new();
 

@@ -164,13 +164,20 @@
 
                 <Label Grid.Column="1"
                        Text="Detalles &amp; más"
-                       TextColor="White"/>
+                       TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
                 <Label Grid.Column="2"
                        Text=">"
                        TextColor="White"/>
             </Grid>
 
         </VerticalStackLayout>
+
+        
         
     </Border>
 </ContentView>

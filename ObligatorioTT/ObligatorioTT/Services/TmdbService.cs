@@ -42,6 +42,10 @@ namespace ObligatorioTT.Services
         public async Task<IEnumerable<Media>> GetActionAsync() =>
             await GetMediasAsync(TmdbUrls.Action);
 
+        public async Task<IEnumerable<Media>> GetSimilarAsync(int id, string type = "movie") =>
+            await GetMediasAsync(
+                $"{TmdbUrls.GetSimilar(id, type)}&api_key={ApiKey}");
+
         public async Task<IEnumerable<Video>?> GetTrailersAsync(int id, string type = "movie")
         {
             var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>
@@ -80,7 +84,14 @@ namespace ObligatorioTT.Services
                 return null;
             }
         }
-        
+
+        public async Task<IEnumerable<Media>> SearchMoviesAsync(string query)
+        {
+            var url = $"https://api.themoviedb.org/3/search/movie?query={query}&api_key={ApiKey}";
+            var searchResult = await HttpClient.GetFromJsonAsync<Movie>(url);
+            return searchResult.results.Select(r => r.ToMediaObject());
+        }
+
     }
 
     public static class TmdbUrls
@@ -232,4 +243,5 @@ namespace ObligatorioTT.Services
         public string Department { get; set; }
     }
 
+    
 }

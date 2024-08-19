@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.DetailsPage"
              xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             xmlns:models="clr-namespace:ObligatorioTT.Models"
              x:DataType="vm:DetailsViewModel"
              Shell.BackgroundColor="Black"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:services="clr-namespace:ObligatorioTT.Services"
              BackgroundColor="Black"
              Title="">
@@ -15,10 +17,18 @@
                 <Setter Property="TextColor" Value="Gray" />
                 <Setter Property="FontSize" Value="12" />
             </Style>
+            <Style TargetType="Label" x:Key="tabtitle">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextTransform" Value="Uppercase" />
+                <Setter Property="Margin" Value=" 0, 3, 0 ,0 " />
+                
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <ScrollView BackgroundColor="Black">
+    <ScrollView BackgroundColor="Black"
+                x:Name="pageScrollView">
         <Grid>
             <ActivityIndicator Color="White"
                                VerticalOptions="Center"
@@ -39,14 +49,15 @@
                          HeightRequest="250"
                          />
                 <VerticalStackLayout Padding="5"
-                                     Spacing="10">
+                                     Spacing="10"
+                                     Margin="0, 15, 0, 0">
                     <Label Text="{Binding Media.DisplayTitle}"
                            FontSize="18"
                            FontAttributes="Bold"/>
                     <HorizontalStackLayout Spacing="15 ">
                         <Label Text="{Binding Media.ReleaseDate}" 
                                Style="{x:StaticResource sub}"/>
-                        <Label Text="{Binding Media.ReleaseDate}"
+                        <Label Text="{Binding MovieDetail.runtime, StringFormat='Duración: {0} minutos'}"
                                Style="{x:StaticResource sub}"/>
                     </HorizontalStackLayout>
 
@@ -56,20 +67,137 @@
                            FontSize="13" />
                     <Label Text="{Binding MovieDetail.revenue, StringFormat='Ganancias: {0:C0}'}"
                            FontSize="13" />
+                    <BoxView HeightRequest="2" />
                     <Label Text="Sinópsis:" FontSize="18" FontAttributes="Bold" TextColor="White" />
                     <Label Text="{Binding Media.Overview}" 
-                            FontSize="13" />
+                           FontSize="13" />
+                    <BoxView HeightRequest="2" />
                     <Label Text="Elenco:" FontSize="18" FontAttributes="Bold" TextColor="White" />
                     <Label Text="{Binding CastNames}" FontSize="14" TextColor="White" />
-
-                    <!-- Mostrar el equipo como una cadena de texto -->
+                    <BoxView HeightRequest="2" />
                     <Label Text="Equipo:" FontSize="18" FontAttributes="Bold" TextColor="White" />
                     <Label Text="{Binding CrewNames}" FontSize="14" TextColor="White" />
 
                 </VerticalStackLayout>
 
+                <VerticalStackLayout Margin="5">
+                    <BoxView HeightRequest="2" />
+
+                    <Grid RowDefinitions="Auto, Auto"
+                          ColumnDefinitions="Auto, Auto"
+                          ColumnSpacing="15">
+
+                        <VerticalStackLayout Grid.Row="0"
+                                             Grid.Column="0">
+                            <BoxView HeightRequest="4"
+                                     Color="Red"
+                                     x:Name="trailersTabIndicator"/>
+
+                            <Label Text="Trailers &amp; More"
+                                   Style="{x:StaticResource tabtitle}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TrailersTab_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="0"
+                                             Grid.Column="1">
+                            <BoxView HeightRequest="4"
+                                     Color="Black"
+                                     x:Name="similarTabIndicator"/>
+
+                            <Label Text="More Like This"
+                                   Style="{x:StaticResource tabtitle}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SimilarTab_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+                <Border BackgroundColor="Black"
+                        StrokeThickness="0"
+                        x:Name="trailersTabContent">
+
+                    <CollectionView ItemsSource="{Binding VideosCol}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="services:Video">
+                                <Grid RowDefinitions="250, Auto"
+                                      Padding="10"
+                                      RowSpacing="5">
+                                    <Border Grid.Row="0"
+                                            StrokeShape="RoundRectangle 5"
+                                            StrokeThickness="0"
+                                            Opacity="0.8">
+                                        <Image Aspect="AspectFill">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding Thumbnail}"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </Border>
+
+                                    <Border Grid.Row="0"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Center"
+                                            BackgroundColor="#DDD"
+                                            HeightRequest="50"
+                                            WidthRequest="50"
+                                            StrokeShape="RoundRectangle 25">
+                                        <Image Source="play.png"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               Aspect="AspectFit"/>
+                                    </Border>
+
+                                    <Label Grid.Row="1" 
+                                           Text="{Binding name}" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=SetMainTrailerCommand}"
+                                                              CommandParameter="{Binding key}"
+                                                              Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Border>
+
+                <Border BackgroundColor="Black"
+                        StrokeThickness="0"
+                        IsVisible="False"
+                        x:Name="similarTabContent">
+
+                    <FlexLayout BindableLayout.ItemsSource="{Binding similarMedia}"
+                                Wrap="Wrap"
+                                JustifyContent="SpaceBetween">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:Media">
+                                <Border StrokeShape="RoundRectangle 5"
+                                        BackgroundColor="Black"
+                                        Padding="5"
+                                        StrokeThickness="0"
+                                        HeightRequest="250"
+                                        WidthRequest="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=SimilarItemWidth}"
+                                        Margin="0, 0, 0, 5">
+                                    <Image Source="{Binding ThumbnailSmall}"
+                                           Aspect="AspectFit"/>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=ChangeToThisMediaCommand}"
+                                                              CommandParameter="{Binding .}"/>
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+
+                </Border>
+
             </VerticalStackLayout>
-            
         </Grid>
     </ScrollView>
+
 </ContentPage>

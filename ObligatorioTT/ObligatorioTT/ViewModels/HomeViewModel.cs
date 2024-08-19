@@ -65,7 +65,7 @@ namespace ObligatorioTT.ViewModels
             SetMediaCollection(upcomingList, Upcoming);
             SetMediaCollection(actionList, ActionMovies);
 
-            SelectedMedia = TrendingMovie;
+            SelectedMedia = null;
         }
         private static void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
         {

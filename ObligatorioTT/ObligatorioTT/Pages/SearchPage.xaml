@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ObligatorioTT.Pages.SearchPage"
+             xmlns:vm="clr-namespace:ObligatorioTT.ViewModels"
+             xmlns:models="clr-namespace:ObligatorioTT.Models"
+             x:DataType="vm:SearchViewModel"
+             Title="Buscar Películas"
+             BackgroundColor="Black">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="15">
+            <!-- Barra de búsqueda -->
+            <SearchBar Placeholder="Buscar películas..."
+                       Text="{Binding SearchQuery}"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={RelativeSource Self}}" />
+
+            <!-- Lista de resultados en formato de grilla -->
+            <CollectionView ItemsSource="{Binding SearchResults}"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="Black"
+                            ItemSizingStrategy="MeasureAllItems"
+                            Margin="0,15,0,0">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Media">
+                        <Border StrokeShape="RoundRectangle 4"
+                                BackgroundColor="Black"
+                                StrokeThickness="0"
+                                HeightRequest="180"
+                                WidthRequest="130"
+                                Margin="5">
+                            <Image Source="{Binding ThumbnailSmall}"
+                                   Aspect="AspectFill"/>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:SearchViewModel}}, Path=NavigateToDetailCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

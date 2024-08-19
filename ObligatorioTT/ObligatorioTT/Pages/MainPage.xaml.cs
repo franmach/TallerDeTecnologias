@@ -1,4 +1,5 @@
 ﻿using ObligatorioTT.ViewModels;
+using ObligatorioTT.Pages;
 
 namespace ObligatorioTT.Pages;
 
@@ -10,9 +11,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         _homeViewModel = homeViewModel;
-        BindingContext = _homeViewModel;
-
-       
+        BindingContext = _homeViewModel;       
     }
 
     //evento para controlar la seleccion de peliculas en la mainpage
@@ -49,4 +48,9 @@ public partial class MainPage : ContentPage
             await label.ScaleTo(1, 250);
         }
     }
+
+    //private async void OnSearchButtonClicked(object sender, EventArgs e)
+    //{
+    //    await Shell.Current.GoToAsync(nameof(SearchPage));
+    //}
 }

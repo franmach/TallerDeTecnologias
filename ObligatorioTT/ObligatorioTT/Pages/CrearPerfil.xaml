@@ -2,59 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ObligatorioTT.Pages.CrearPerfil"
-             Title="Crear Perfil">
+             Title="Crear Perfil"
+             BackgroundColor="#cac0f2"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             >
 
+    <VerticalStackLayout 
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        Padding="25"
+        Spacing="15">
 
-    <Grid Padding="5" RowSpacing="5" ColumnSpacing="5"
-      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto">
+       
 
-        <!-- Campo de entrada para el nombre -->
         <Entry x:Name="Nombre"
-           Placeholder="Nombre" 
-           PlaceholderColor="Black"
-           Grid.Row="0" />
+               Placeholder="Nombre" 
+               PlaceholderColor="Black"
+               Keyboard="Default"
+               WidthRequest="250"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
 
-        <!-- Campo de entrada para el teléfono -->
         <Entry x:Name="Telefono"
-               
-           Placeholder="Teléfono"
-           PlaceholderColor="Black"
-           Grid.Row="1" />
+               Placeholder="Teléfono"
+               PlaceholderColor="Black"
+               Keyboard="Telephone"
+               WidthRequest="250"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
 
-        <!-- Campo de entrada para el email -->
         <Entry x:Name="Email"
-           Placeholder="Email"
-           PlaceholderColor="Black"
-           Grid.Row="2" />
+               Placeholder="Email"
+               PlaceholderColor="Black"
+               Keyboard="Email"
+               WidthRequest="250"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
 
-        <!-- Campo de entrada para el password -->
         <Entry x:Name="Password"
-           Placeholder="Password"
-           PlaceholderColor="Black"
-           IsPassword="True"
-           Grid.Row="3" />
+               Placeholder="Contraseña"
+               PlaceholderColor="Black"
+               IsPassword="True"
+               WidthRequest="250"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"/>
 
-        <!-- Campo de entrada para la ruta de la foto -->
-        <Button
-            x:Name="Foto"
-            Text="Tomar foto"
-            TextColor="White"
-            BackgroundColor="Black"
-            Clicked="Foto_Clicked"
-            WidthRequest="150"
-            Grid.Row="4"
-        />
+        <Button x:Name="Foto"
+                Text="Tomar foto"
+                TextColor="White"
+                BackgroundColor="Black"
+                Clicked="Foto_Clicked"
+                WidthRequest="200"
+                HorizontalOptions="Center"/>
 
-        <!-- Botón para agregar un nuevo usuario -->
         <Button Text="Agregar Usuario"
-            x:Name="btnAgregarUsuario"
-            Grid.Row="5"
-            Clicked="btnAgregarUsuario_Clicked" />
+                x:Name="btnAgregarUsuario"
+                Clicked="btnAgregarUsuario_Clicked"
+                WidthRequest="200"
+                HorizontalOptions="Center"/>
 
-        <!-- Mensaje de estado -->
-        <Label x:Name="statusMessage"
-           TextColor="#cac0f2"
-           Grid.Row="6" />
-    </Grid>
+    </VerticalStackLayout>
 
 </ContentPage>

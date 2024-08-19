@@ -30,7 +30,7 @@ namespace ObligatorioTT.Pages
 
                 if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 {
-                    statusMessage.Text = "Por favor, complete todos los campos obligatorios.";
+                    await DisplayAlert("", "Por favor, complete todos los campos obligatorios.","Cerrar");
                     return;
                 }
 
@@ -44,15 +44,15 @@ namespace ObligatorioTT.Pages
                 };
 
                 await _repository.AddNewUsuarioAsync(nuevoUsuario);
+               await DisplayAlert("", "Usuario agregado correctamente", "Cerrar");
 
-                statusMessage.Text = "Usuario agregado correctamente";
-                Nombre.Text = Telefono.Text = Email.Text = Password.Text = Foto.Text = statusMessage.Text = string.Empty;
+                Nombre.Text = Telefono.Text = Email.Text = Password.Text = Foto.Text =  string.Empty;
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error in btnAgregarUsuario_Clicked: {ex.Message}");
-                statusMessage.Text = "Error al agregar usuario";
+               await DisplayAlert("", "Error al agregar usuario", "Cerrar");
             }
         }
     

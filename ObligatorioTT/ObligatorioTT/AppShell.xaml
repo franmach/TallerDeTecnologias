@@ -13,7 +13,7 @@
     <TabBar>
         <ShellContent
             Title="Buscar"
-            Icon="Resources/Images/lupa.png"
+            Icon="Resources/Images/search.png"
             ContentTemplate="{DataTemplate pages:Login}"
             Route="Login">
         </ShellContent>
@@ -49,7 +49,7 @@
 
         <ShellContent
              Title="Sucursales"
-             Icon="sucursal"
+             Icon="loaction"
              ContentTemplate="{DataTemplate pages:Sucursales}"
              Route="Sucursales">
         </ShellContent>

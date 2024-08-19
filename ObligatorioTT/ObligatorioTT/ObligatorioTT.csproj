@@ -66,10 +66,10 @@
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\huella.png" />
 	  <None Remove="Resources\Images\info.png" />
+	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\logo.png" />
-	  <None Remove="Resources\Images\logoN.png" />
-	  <None Remove="Resources\Images\lupa.png" />
 	  <None Remove="Resources\Images\play.png" />
+	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\user.png" />
 	  <None Remove="Resources\Raw\presentacion.mp4" />
 	</ItemGroup>

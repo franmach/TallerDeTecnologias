@@ -42,6 +42,7 @@ namespace ObligatorioTT.Services
         public async Task<IEnumerable<Media>> GetActionAsync() =>
             await GetMediasAsync(TmdbUrls.Action);
 
+
         public async Task<IEnumerable<Video>?> GetTrailersAsync(int id, string type = "movie")
         {
             var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>
@@ -80,7 +81,29 @@ namespace ObligatorioTT.Services
                 return null;
             }
         }
-        
+
+        public async Task<IEnumerable<Result>> FindMoviesByTitleAsync(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                throw new ArgumentException("El término de búsqueda no puede estar vacío.", nameof(query));
+
+            var searchUrl = $"https://api.themoviedb.org/3/search/movie?query={Uri.EscapeDataString(query)}&api_key={ApiKey}&language=es-sp";
+
+            try
+            {
+                var searchResult = await HttpClient.GetFromJsonAsync<Movie>(searchUrl);
+
+                return searchResult?.results ?? Enumerable.Empty<Result>();
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                Console.WriteLine($"Error durante la búsqueda de películas: {ex.Message}");
+                return Enumerable.Empty<Result>();
+            }
+        }
+
+
     }
 
     public static class TmdbUrls
@@ -230,6 +253,12 @@ namespace ObligatorioTT.Services
         public string Name { get; set; }
         public string Job { get; set; }
         public string Department { get; set; }
+    }
+
+    public class Favorite
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 
 }

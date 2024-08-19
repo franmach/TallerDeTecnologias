@@ -27,6 +27,7 @@
         <Entry 
             x:Name="email"
             Placeholder="Email"
+            Keyboard="Email"
             PlaceholderColor="Black"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 

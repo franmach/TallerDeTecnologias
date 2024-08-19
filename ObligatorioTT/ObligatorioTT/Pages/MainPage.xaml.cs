@@ -1,10 +1,11 @@
 ﻿using ObligatorioTT.ViewModels;
-
+using ObligatorioTT.Services;
 namespace ObligatorioTT.Pages;
 
 public partial class MainPage : ContentPage
 {
     private readonly HomeViewModel _homeViewModel;
+    private readonly TmdbService _tmdbService;
 
     public MainPage(HomeViewModel homeViewModel)
     {
@@ -48,5 +49,9 @@ public partial class MainPage : ContentPage
         {
             await label.ScaleTo(1, 250);
         }
+    }
+
+    private void SearchButton_Clicked(object sender, EventArgs e)
+    {
     }
 }
